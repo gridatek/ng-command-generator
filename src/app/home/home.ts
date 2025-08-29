@@ -73,6 +73,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     placeholder="my-angular-app"
                     required
                   />
+                  <p class="mt-1 text-xs text-gray-500">The name of your Angular application</p>
                 </div>
 
                 <!-- Directory -->
@@ -88,6 +89,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Leave empty for current directory"
                   />
+                  <p class="mt-1 text-xs text-gray-500">Custom directory path for the project</p>
                 </div>
               </div>
 
@@ -109,6 +111,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <option value="sass">Sass</option>
                     <option value="less">Less</option>
                   </select>
+                  <p class="mt-1 text-xs text-gray-500">Stylesheet format for components</p>
                 </div>
 
                 <!-- View Encapsulation -->
@@ -127,6 +130,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <option value="None">None</option>
                     <option value="ShadowDom">ShadowDom</option>
                   </select>
+                  <p class="mt-1 text-xs text-gray-500">CSS encapsulation strategy for components</p>
                 </div>
               </div>
 
@@ -150,22 +154,25 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <option value="bun">bun</option>
                     <option value="cnpm">cnpm</option>
                   </select>
+                  <p class="mt-1 text-xs text-gray-500">Package manager to use for dependencies</p>
                 </div>
 
                 <!-- Skip Install -->
                 <div class="flex items-end">
-                  <div class="flex items-center h-10">
-                    <input
-                      type="checkbox"
-                      id="skipInstall"
-                      formControlName="skipInstall"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="skipInstall" class="ml-2 block text-sm text-gray-700 tooltip">
-                      <i class="fas fa-download mr-1"></i>
-                      Skip Install
-                      <span class="tooltiptext">Skip package installation</span>
-                    </label>
+                  <div>
+                    <div class="flex items-center h-10">
+                      <input
+                        type="checkbox"
+                        id="skipInstall"
+                        formControlName="skipInstall"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="skipInstall" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-download mr-1"></i>
+                        Skip Install
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500">Skip package installation</p>
                   </div>
                 </div>
               </div>
@@ -191,6 +198,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <option value="jetbrains">JetBrains</option>
                     <option value="windsurf">Windsurf</option>
                   </select>
+                  <p class="mt-1 text-xs text-gray-500">AI assistant integration for development</p>
                 </div>
 
                 <!-- Component Prefix -->
@@ -206,6 +214,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="app"
                   />
+                  <p class="mt-1 text-xs text-gray-500">Prefix for component selectors</p>
                 </div>
               </div>
 
@@ -224,6 +233,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="@angular/material, @ngrx/schematics, etc."
                   />
+                  <p class="mt-1 text-xs text-gray-500">Schematics collection to use for generation</p>
                 </div>
 
                 <!-- New Project Root -->
@@ -239,10 +249,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="projects"
                   />
+                  <p class="mt-1 text-xs text-gray-500">Root directory for new projects</p>
                 </div>
               </div>
             </div>
-
 
             <!-- Git Configuration -->
             <div class="mt-6 border-t pt-4">
@@ -251,32 +261,36 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 Git Configuration
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="commit"
-                    formControlName="commit"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="commit" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-code-branch mr-1"></i>
-                    Initial Commit
-                    <span class="tooltiptext">Create initial Git commit</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="commit"
+                      formControlName="commit"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="commit" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-code-branch mr-1"></i>
+                      Initial Commit
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Create initial Git commit</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="skipGit"
-                    formControlName="skipGit"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="skipGit" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-git-alt mr-1"></i>
-                    Skip Git
-                    <span class="tooltiptext">Don't initialize Git repository</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="skipGit"
+                      formControlName="skipGit"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="skipGit" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-git-alt mr-1"></i>
+                      Skip Git
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Don't initialize Git repository</p>
                 </div>
               </div>
             </div>
@@ -284,132 +298,150 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             <!-- Boolean Options -->
             <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="space-y-3">
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="routing"
-                    formControlName="routing"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="routing" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-route mr-1"></i>
-                    Routing
-                    <span class="tooltiptext">Enable routing in the application</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="routing"
+                      formControlName="routing"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="routing" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-route mr-1"></i>
+                      Routing
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable routing in the application</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="standalone"
-                    formControlName="standalone"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="standalone" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-cube mr-1"></i>
-                    Standalone
-                    <span class="tooltiptext">Use standalone components (recommended)</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="standalone"
+                      formControlName="standalone"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="standalone" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-cube mr-1"></i>
+                      Standalone
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Use standalone components (recommended)</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="strict"
-                    formControlName="strict"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="strict" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-shield-alt mr-1"></i>
-                    Strict Mode
-                    <span class="tooltiptext">Enable stricter type checking</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="strict"
+                      formControlName="strict"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="strict" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-shield-alt mr-1"></i>
+                      Strict Mode
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable stricter type checking</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="ssr"
-                    formControlName="ssr"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="ssr" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-server mr-1"></i>
-                    SSR
-                    <span class="tooltiptext">Server-Side Rendering</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="ssr"
+                      formControlName="ssr"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="ssr" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-server mr-1"></i>
+                      SSR
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Server-Side Rendering</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="zoneless"
-                    formControlName="zoneless"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="zoneless" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-circle-notch mr-1"></i>
-                    Zoneless
-                    <span class="tooltiptext">Don't use zone.js</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="zoneless"
+                      formControlName="zoneless"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="zoneless" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-circle-notch mr-1"></i>
+                      Zoneless
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Don't use zone.js</p>
                 </div>
               </div>
 
               <div class="space-y-3">
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="createApplication"
-                    formControlName="createApplication"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="createApplication" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-plus-circle mr-1"></i>
-                    Create App
-                    <span class="tooltiptext">Create initial application</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="createApplication"
+                      formControlName="createApplication"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="createApplication" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-plus-circle mr-1"></i>
+                      Create App
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Create initial application</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="interactive"
-                    formControlName="interactive"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="interactive" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-comments mr-1"></i>
-                    Interactive
-                    <span class="tooltiptext">Enable interactive prompts</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="interactive"
+                      formControlName="interactive"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="interactive" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-comments mr-1"></i>
+                      Interactive
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable interactive prompts</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="skipTests"
-                    formControlName="skipTests"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="skipTests" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-vial mr-1"></i>
-                    Skip Tests
-                    <span class="tooltiptext">Skip test file generation</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="skipTests"
+                      formControlName="skipTests"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="skipTests" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-vial mr-1"></i>
+                      Skip Tests
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Skip test file generation</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="minimal"
-                    formControlName="minimal"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="minimal" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-minus-circle mr-1"></i>
-                    Minimal
-                    <span class="tooltiptext">Generate minimal workspace</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="minimal"
+                      formControlName="minimal"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="minimal" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-minus-circle mr-1"></i>
+                      Minimal
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Generate minimal workspace</p>
                 </div>
               </div>
             </div>
@@ -421,32 +453,36 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 Single File Component
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="inlineTemplate"
-                    formControlName="inlineTemplate"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="inlineTemplate" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-file-code mr-1"></i>
-                    Inline Template
-                    <span class="tooltiptext">Include templates in component files</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="inlineTemplate"
+                      formControlName="inlineTemplate"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="inlineTemplate" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-file-code mr-1"></i>
+                      Inline Template
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Include templates in component files</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="inlineStyle"
-                    formControlName="inlineStyle"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="inlineStyle" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-code mr-1"></i>
-                    Inline Style
-                    <span class="tooltiptext">Include styles in component files</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="inlineStyle"
+                      formControlName="inlineStyle"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="inlineStyle" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-code mr-1"></i>
+                      Inline Style
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Include styles in component files</p>
                 </div>
               </div>
             </div>
@@ -458,46 +494,52 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 Advanced Options
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="defaults"
-                    formControlName="defaults"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="defaults" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-magic mr-1"></i>
-                    Use Defaults
-                    <span class="tooltiptext">Disable interactive prompts</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="defaults"
+                      formControlName="defaults"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="defaults" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-magic mr-1"></i>
+                      Use Defaults
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Disable interactive prompts</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="dryRun"
-                    formControlName="dryRun"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="dryRun" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-play mr-1"></i>
-                    Dry Run
-                    <span class="tooltiptext">Preview without creating files</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="dryRun"
+                      formControlName="dryRun"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="dryRun" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-play mr-1"></i>
+                      Dry Run
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Preview without creating files</p>
                 </div>
 
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="force"
-                    formControlName="force"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="force" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-exclamation-triangle mr-1"></i>
-                    Force
-                    <span class="tooltiptext">Overwrite existing files</span>
-                  </label>
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="force"
+                      formControlName="force"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="force" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-exclamation-triangle mr-1"></i>
+                      Force
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Overwrite existing files</p>
                 </div>
               </div>
             </div>
