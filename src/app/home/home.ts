@@ -263,11 +263,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </p>
                 </div>
               </div>
-
-              <!-- Row 5: Collection and New Project Root -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Collection -->
-              </div>
             </div>
 
             <!-- Single File Component Options -->
