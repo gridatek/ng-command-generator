@@ -55,162 +55,182 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             </div>
           </div>
 
-          <form [formGroup]="commandForm" class="space-y-6 mb-6">
-            <!-- App Name -->
-            <div>
-              <label for="appName" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-tag mr-1"></i>
-                Application Name *
-              </label>
-              <input
-                type="text"
-                id="appName"
-                formControlName="appName"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="my-angular-app"
-                required
-              />
+          <form [formGroup]="commandForm" class="mb-6">
+            <div class="space-y-6">
+              <!-- Row 1: App Name and Directory -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- App Name -->
+                <div>
+                  <label for="appName" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-tag mr-1"></i>
+                    Application Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="appName"
+                    formControlName="appName"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="my-angular-app"
+                    required
+                  />
+                </div>
+
+                <!-- Directory -->
+                <div>
+                  <label for="directory" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-folder mr-1"></i>
+                    Directory
+                  </label>
+                  <input
+                    type="text"
+                    id="directory"
+                    formControlName="directory"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Leave empty for current directory"
+                  />
+                </div>
+              </div>
+
+              <!-- Row 2: Style Format and View Encapsulation -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Style Format -->
+                <div>
+                  <label for="style" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-paint-brush mr-1"></i>
+                    Style Format
+                  </label>
+                  <select
+                    id="style"
+                    formControlName="style"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="css">CSS</option>
+                    <option value="scss">SCSS</option>
+                    <option value="sass">Sass</option>
+                    <option value="less">Less</option>
+                  </select>
+                </div>
+
+                <!-- View Encapsulation -->
+                <div>
+                  <label for="viewEncapsulation" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-eye mr-1"></i>
+                    View Encapsulation
+                  </label>
+                  <select
+                    id="viewEncapsulation"
+                    formControlName="viewEncapsulation"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="">Default (Emulated)</option>
+                    <option value="Emulated">Emulated</option>
+                    <option value="None">None</option>
+                    <option value="ShadowDom">ShadowDom</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Row 3: Package Manager and AI Config -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Package Manager -->
+                <div>
+                  <label for="packageManager" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-box mr-1"></i>
+                    Package Manager
+                  </label>
+                  <select
+                    id="packageManager"
+                    formControlName="packageManager"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="">Default (npm)</option>
+                    <option value="npm">npm</option>
+                    <option value="yarn">yarn</option>
+                    <option value="pnpm">pnpm</option>
+                    <option value="bun">bun</option>
+                    <option value="cnpm">cnpm</option>
+                  </select>
+                </div>
+
+                <!-- AI Config -->
+                <div>
+                  <label for="aiConfig" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-robot mr-1"></i>
+                    AI Tools Configuration
+                  </label>
+                  <select
+                    id="aiConfig"
+                    formControlName="aiConfig"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="none">None</option>
+                    <option value="claude">Claude</option>
+                    <option value="copilot">GitHub Copilot</option>
+                    <option value="cursor">Cursor</option>
+                    <option value="gemini">Gemini</option>
+                    <option value="jetbrains">JetBrains</option>
+                    <option value="windsurf">Windsurf</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Row 4: Collection and Component Prefix -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Collection -->
+                <div>
+                  <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-layer-group mr-1"></i>
+                    Schematics Collection
+                  </label>
+                  <input
+                    type="text"
+                    id="collection"
+                    formControlName="collection"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="@angular/material, @ngrx/schematics, etc."
+                  />
+                </div>
+
+                <!-- Component Prefix -->
+                <div>
+                  <label for="prefix" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-code mr-1"></i>
+                    Component Prefix
+                  </label>
+                  <input
+                    type="text"
+                    id="prefix"
+                    formControlName="prefix"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="app"
+                  />
+                </div>
+              </div>
+
+              <!-- Row 5: New Project Root (single field) -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- New Project Root -->
+                <div>
+                  <label for="newProjectRoot" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-sitemap mr-1"></i>
+                    New Project Root
+                  </label>
+                  <input
+                    type="text"
+                    id="newProjectRoot"
+                    formControlName="newProjectRoot"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="projects"
+                  />
+                </div>
+                <!-- Empty right column for this row -->
+                <div></div>
+              </div>
             </div>
 
-            <!-- Directory -->
-            <div>
-              <label for="directory" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-folder mr-1"></i>
-                Directory
-              </label>
-              <input
-                type="text"
-                id="directory"
-                formControlName="directory"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Leave empty for current directory"
-              />
-            </div>
-
-            <!-- Style Format -->
-            <div>
-              <label for="style" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-paint-brush mr-1"></i>
-                Style Format
-              </label>
-              <select
-                id="style"
-                formControlName="style"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="css">CSS</option>
-                <option value="scss">SCSS</option>
-                <option value="sass">Sass</option>
-                <option value="less">Less</option>
-              </select>
-            </div>
-
-            <!-- View Encapsulation -->
-            <div>
-              <label for="viewEncapsulation" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-eye mr-1"></i>
-                View Encapsulation
-              </label>
-              <select
-                id="viewEncapsulation"
-                formControlName="viewEncapsulation"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">Default (Emulated)</option>
-                <option value="Emulated">Emulated</option>
-                <option value="None">None</option>
-                <option value="ShadowDom">ShadowDom</option>
-              </select>
-            </div>
-
-            <!-- Package Manager -->
-            <div>
-              <label for="packageManager" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-box mr-1"></i>
-                Package Manager
-              </label>
-              <select
-                id="packageManager"
-                formControlName="packageManager"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">Default (npm)</option>
-                <option value="npm">npm</option>
-                <option value="yarn">yarn</option>
-                <option value="pnpm">pnpm</option>
-                <option value="bun">bun</option>
-                <option value="cnpm">cnpm</option>
-              </select>
-            </div>
-
-            <!-- AI Config -->
-            <div>
-              <label for="aiConfig" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-robot mr-1"></i>
-                AI Tools Configuration
-              </label>
-              <select
-                id="aiConfig"
-                formControlName="aiConfig"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="none">None</option>
-                <option value="claude">Claude</option>
-                <option value="copilot">GitHub Copilot</option>
-                <option value="cursor">Cursor</option>
-                <option value="gemini">Gemini</option>
-                <option value="jetbrains">JetBrains</option>
-                <option value="windsurf">Windsurf</option>
-              </select>
-            </div>
-
-            <!-- Collection -->
-            <div>
-              <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-layer-group mr-1"></i>
-                Schematics Collection
-              </label>
-              <input
-                type="text"
-                id="collection"
-                formControlName="collection"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="@angular/material, @ngrx/schematics, etc."
-              />
-            </div>
-
-            <!-- Prefix -->
-            <div>
-              <label for="prefix" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-code mr-1"></i>
-                Component Prefix
-              </label>
-              <input
-                type="text"
-                id="prefix"
-                formControlName="prefix"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="app"
-              />
-            </div>
-
-            <!-- New Project Root -->
-            <div>
-              <label for="newProjectRoot" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-sitemap mr-1"></i>
-                New Project Root
-              </label>
-              <input
-                type="text"
-                id="newProjectRoot"
-                formControlName="newProjectRoot"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="projects"
-              />
-            </div>
 
             <!-- Boolean Options -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="space-y-3">
                 <div class="flex items-center">
                   <input
