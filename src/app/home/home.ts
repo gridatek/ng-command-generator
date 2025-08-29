@@ -130,7 +130,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </div>
               </div>
 
-              <!-- Row 3: Package Manager and AI Config -->
+              <!-- Row 3: Package Manager and Skip Install -->
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Package Manager -->
                 <div>
@@ -152,6 +152,26 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </select>
                 </div>
 
+                <!-- Skip Install -->
+                <div class="flex items-end">
+                  <div class="flex items-center h-10">
+                    <input
+                      type="checkbox"
+                      id="skipInstall"
+                      formControlName="skipInstall"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="skipInstall" class="ml-2 block text-sm text-gray-700 tooltip">
+                      <i class="fas fa-download mr-1"></i>
+                      Skip Install
+                      <span class="tooltiptext">Skip package installation</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Row 4: AI Tools Configuration and Component Prefix -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- AI Config -->
                 <div>
                   <label for="aiConfig" class="block text-sm font-medium text-gray-700 mb-2">
@@ -172,24 +192,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <option value="windsurf">Windsurf</option>
                   </select>
                 </div>
-              </div>
-
-              <!-- Row 4: Collection and Component Prefix -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Collection -->
-                <div>
-                  <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-layer-group mr-1"></i>
-                    Schematics Collection
-                  </label>
-                  <input
-                    type="text"
-                    id="collection"
-                    formControlName="collection"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="@angular/material, @ngrx/schematics, etc."
-                  />
-                </div>
 
                 <!-- Component Prefix -->
                 <div>
@@ -207,8 +209,23 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </div>
               </div>
 
-              <!-- Row 5: New Project Root (single field) -->
+              <!-- Row 5: Collection and New Project Root -->
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Collection -->
+                <div>
+                  <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-layer-group mr-1"></i>
+                    Schematics Collection
+                  </label>
+                  <input
+                    type="text"
+                    id="collection"
+                    formControlName="collection"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="@angular/material, @ngrx/schematics, etc."
+                  />
+                </div>
+
                 <!-- New Project Root -->
                 <div>
                   <label for="newProjectRoot" class="block text-sm font-medium text-gray-700 mb-2">
@@ -223,8 +240,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     placeholder="projects"
                   />
                 </div>
-                <!-- Empty right column for this row -->
-                <div></div>
               </div>
             </div>
 
@@ -357,20 +372,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <i class="fas fa-git-alt mr-1"></i>
                     Skip Git
                     <span class="tooltiptext">Don't initialize Git repository</span>
-                  </label>
-                </div>
-
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="skipInstall"
-                    formControlName="skipInstall"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="skipInstall" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-download mr-1"></i>
-                    Skip Install
-                    <span class="tooltiptext">Skip package installation</span>
                   </label>
                 </div>
 
