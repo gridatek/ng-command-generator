@@ -306,50 +306,52 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </div>
             </div>
 
-            <!-- Git Configuration -->
-            <div class="mt-6 border-t pt-4">
+            <div class="border-t pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-git-alt mr-1"></i>
-                Git Configuration
+                <i class="fas fa-file-code mr-1"></i>
+                Prompts
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <div class="flex items-center">
                     <input
                       type="checkbox"
-                      id="commit"
-                      formControlName="commit"
+                      id="interactive"
+                      formControlName="interactive"
                       class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
-                    <label for="commit" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-code-branch mr-1"></i>
-                      Initial Commit
+                    <label for="interactive" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-comments mr-1"></i>
+                      Interactive
                     </label>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Create initial Git commit</p>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable interactive prompts</p>
                 </div>
 
                 <div>
                   <div class="flex items-center">
                     <input
                       type="checkbox"
-                      id="skipGit"
-                      formControlName="skipGit"
+                      id="defaults"
+                      formControlName="defaults"
                       class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
-                    <label for="skipGit" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-git-alt mr-1"></i>
-                      Skip Git
+                    <label for="defaults" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-magic mr-1"></i>
+                      Use Defaults
                     </label>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Don't initialize Git repository</p>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Disable interactive prompts</p>
                 </div>
               </div>
             </div>
 
-            <!-- Boolean Options -->
-            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="space-y-3">
+            <div class="border-t pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-sliders-h mr-1"></i>
+                Project Features & Options
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <div class="flex items-center">
                     <input
@@ -429,9 +431,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </div>
                   <p class="mt-1 text-xs text-gray-500 ml-6">Don't use zone.js</p>
                 </div>
-              </div>
 
-              <div class="space-y-3">
                 <div>
                   <div class="flex items-center">
                     <input
@@ -452,22 +452,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   <div class="flex items-center">
                     <input
                       type="checkbox"
-                      id="interactive"
-                      formControlName="interactive"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="interactive" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-comments mr-1"></i>
-                      Interactive
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable interactive prompts</p>
-                </div>
-
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
                       id="skipTests"
                       formControlName="skipTests"
                       class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
@@ -479,7 +463,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </div>
                   <p class="mt-1 text-xs text-gray-500 ml-6">Skip test file generation</p>
                 </div>
-
                 <div>
                   <div class="flex items-center">
                     <input
@@ -498,38 +481,53 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </div>
             </div>
 
-            <!-- Advanced Options -->
-            <div class="border-t pt-4">
+            <!-- Git Configuration -->
+            <div class="mt-6 border-t pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-sliders-h mr-1"></i>
-                Advanced Options
+                <i class="fas fa-git-alt mr-1"></i>
+                Git Configuration
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-
-
-
-
-
-
-
-              
                 <div>
                   <div class="flex items-center">
                     <input
                       type="checkbox"
-                      id="defaults"
-                      formControlName="defaults"
+                      id="commit"
+                      formControlName="commit"
                       class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
-                    <label for="defaults" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-magic mr-1"></i>
-                      Use Defaults
+                    <label for="commit" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-code-branch mr-1"></i>
+                      Initial Commit
                     </label>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Disable interactive prompts</p>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Create initial Git commit</p>
                 </div>
 
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="skipGit"
+                      formControlName="skipGit"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="skipGit" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-git-alt mr-1"></i>
+                      Skip Git
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Don't initialize Git repository</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-sliders-h mr-1"></i>
+                How to create files?
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <div class="flex items-center">
                     <input
