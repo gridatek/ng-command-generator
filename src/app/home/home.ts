@@ -1,8 +1,16 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal,
+  ViewEncapsulation,
+} from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   template: `
     <div class="bg-gray-100 min-h-screen">
       <div class="container mx-auto px-4 py-8 max-w-7xl">
@@ -25,17 +33,17 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
             <h2 class="text-2xl font-semibold text-gray-800">Configuration</h2>
           </div>
 
-          <form id="configForm" class="space-y-6 mb-6">
+          <form [formGroup]="commandForm" class="space-y-6 mb-6">
             <!-- App Name -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="appName" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-tag mr-1"></i>
                 Application Name *
               </label>
               <input
                 type="text"
                 id="appName"
-                value="my-angular-app"
+                formControlName="appName"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="my-angular-app"
                 required
@@ -44,13 +52,14 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- Directory -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="directory" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-folder mr-1"></i>
                 Directory (optional)
               </label>
               <input
                 type="text"
                 id="directory"
+                formControlName="directory"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Leave empty for current directory"
               />
@@ -58,16 +67,17 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- Style Format -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="style" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-paint-brush mr-1"></i>
                 Style Format
               </label>
               <select
                 id="style"
+                formControlName="style"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="css">CSS</option>
-                <option value="scss" selected>SCSS</option>
+                <option value="scss">SCSS</option>
                 <option value="sass">Sass</option>
                 <option value="less">Less</option>
               </select>
@@ -75,12 +85,13 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- Package Manager -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="packageManager" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-box mr-1"></i>
                 Package Manager
               </label>
               <select
                 id="packageManager"
+                formControlName="packageManager"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Default (npm)</option>
@@ -94,12 +105,13 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- AI Config -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="aiConfig" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-robot mr-1"></i>
                 AI Tools Configuration
               </label>
               <select
                 id="aiConfig"
+                formControlName="aiConfig"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">None</option>
@@ -114,13 +126,14 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- Collection -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-layer-group mr-1"></i>
                 Schematics Collection
               </label>
               <input
                 type="text"
                 id="collection"
+                formControlName="collection"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="@angular/material, @ngrx/schematics, etc."
               />
@@ -128,14 +141,14 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- Prefix -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="prefix" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-code mr-1"></i>
                 Component Prefix
               </label>
               <input
                 type="text"
                 id="prefix"
-                value="app"
+                formControlName="prefix"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="app"
               />
@@ -143,12 +156,13 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- View Encapsulation -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="viewEncapsulation" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-eye mr-1"></i>
                 View Encapsulation
               </label>
               <select
                 id="viewEncapsulation"
+                formControlName="viewEncapsulation"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Default (Emulated)</option>
@@ -160,14 +174,14 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 
             <!-- New Project Root -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="newProjectRoot" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-sitemap mr-1"></i>
                 New Project Root
               </label>
               <input
                 type="text"
                 id="newProjectRoot"
-                value="projects"
+                formControlName="newProjectRoot"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="projects"
               />
@@ -180,7 +194,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="routing"
-                    checked
+                    formControlName="routing"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="routing" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -194,7 +208,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="standalone"
-                    checked
+                    formControlName="standalone"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="standalone" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -208,7 +222,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="strict"
-                    checked
+                    formControlName="strict"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="strict" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -222,6 +236,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="ssr"
+                    formControlName="ssr"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="ssr" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -235,6 +250,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="zoneless"
+                    formControlName="zoneless"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="zoneless" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -248,7 +264,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="commit"
-                    checked
+                    formControlName="commit"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="commit" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -264,7 +280,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="createApplication"
-                    checked
+                    formControlName="createApplication"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="createApplication" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -278,7 +294,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="interactive"
-                    checked
+                    formControlName="interactive"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="interactive" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -292,6 +308,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="skipGit"
+                    formControlName="skipGit"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="skipGit" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -305,6 +322,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="skipInstall"
+                    formControlName="skipInstall"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="skipInstall" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -318,6 +336,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="skipTests"
+                    formControlName="skipTests"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="skipTests" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -331,6 +350,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="minimal"
+                    formControlName="minimal"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="minimal" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -353,6 +373,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="inlineStyle"
+                    formControlName="inlineStyle"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="inlineStyle" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -366,6 +387,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="inlineTemplate"
+                    formControlName="inlineTemplate"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="inlineTemplate" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -379,6 +401,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="defaults"
+                    formControlName="defaults"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="defaults" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -392,6 +415,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="dryRun"
+                    formControlName="dryRun"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="dryRun" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -405,6 +429,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
                   <input
                     type="checkbox"
                     id="force"
+                    formControlName="force"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label for="force" class="ml-2 block text-sm text-gray-700 tooltip">
@@ -425,19 +450,19 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
           <div class="mb-6 slide-enter">
             <div class="flex items-center justify-end mb-2">
               <button
-                onclick="copyCommand('linuxCommand')"
+                (click)="copyCommand()"
                 class="flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <i class="fas fa-copy mr-1"></i>
-                Copy
+                <span class="font-medium">{{ isCopied() ? 'Copied!' : 'Copy' }}</span>
               </button>
             </div>
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg">
               <div class="flex items-start">
                 <span class="text-gray-500 mr-2">$</span>
-                <span id="linuxCommand" class="command-output flex-1 break-all"
-                  >ng new my-angular-app</span
-                >
+                <span id="linuxCommand" class="command-output flex-1 break-all">
+                  {{ command() }}
+                </span>
               </div>
             </div>
           </div>
@@ -449,4 +474,159 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Home {}
+export class Home {
+  protected readonly commandForm: FormGroup;
+  protected readonly isCopied = signal<boolean>(false);
+
+  constructor(private readonly fb: FormBuilder) {
+    this.commandForm = this.fb.group({
+      appName: ['my-angular-app'],
+      directory: [''],
+      style: ['scss'],
+      packageManager: [''],
+      aiConfig: [''],
+      collection: [''],
+      prefix: ['app'],
+      viewEncapsulation: [''],
+      newProjectRoot: ['projects'],
+      routing: [true],
+      standalone: [true],
+      strict: [true],
+      ssr: [false],
+      zoneless: [false],
+      commit: [true],
+      createApplication: [true],
+      interactive: [true],
+      skipGit: [false],
+      skipInstall: [false],
+      skipTests: [false],
+      minimal: [false],
+      inlineStyle: [false],
+      inlineTemplate: [false],
+      defaults: [false],
+      dryRun: [false],
+      force: [false],
+    });
+  }
+
+  protected readonly command = computed(() => {
+    const formValue = this.commandForm.value;
+    let cmd = 'ng new';
+    const booleanOptions = [
+      'routing',
+      'standalone',
+      'strict',
+      'ssr',
+      'zoneless',
+      'commit',
+      'createApplication',
+      'interactive',
+      'skipGit',
+      'skipInstall',
+      'skipTests',
+      'minimal',
+      'inlineStyle',
+      'inlineTemplate',
+      'defaults',
+      'dryRun',
+      'force',
+    ];
+
+    // Application Name and Directory
+    if (formValue.appName) {
+      cmd += ` ${formValue.appName}`;
+    }
+    if (formValue.directory) {
+      cmd += ` --directory="${formValue.directory}"`;
+    }
+
+    // Other options
+    if (formValue.style && formValue.style !== 'scss') {
+      cmd += ` --style=${formValue.style}`;
+    }
+    if (formValue.packageManager && formValue.packageManager !== 'npm') {
+      cmd += ` --package-manager=${formValue.packageManager}`;
+    }
+    if (formValue.aiConfig) {
+      cmd += ` --ai-config=${formValue.aiConfig}`;
+    }
+    if (formValue.collection) {
+      cmd += ` --collection=${formValue.collection}`;
+    }
+    if (formValue.prefix && formValue.prefix !== 'app') {
+      cmd += ` --prefix=${formValue.prefix}`;
+    }
+    if (formValue.viewEncapsulation) {
+      cmd += ` --view-encapsulation=${formValue.viewEncapsulation}`;
+    }
+    if (formValue.newProjectRoot && formValue.newProjectRoot !== 'projects') {
+      cmd += ` --new-project-root=${formValue.newProjectRoot}`;
+    }
+
+    // Boolean flags
+    for (const option of booleanOptions) {
+      if (formValue[option]) {
+        if (
+          option === 'routing' ||
+          option === 'standalone' ||
+          option === 'strict' ||
+          option === 'commit' ||
+          option === 'createApplication' ||
+          option === 'interactive'
+        ) {
+          // These are checked by default, so we only add the flag if they are false (the --no- form)
+          // As per the provided template, they are all checked, so their boolean value is true by default.
+          // I will not add these flags if they are true, since that's the default behavior.
+          // The form logic will be to generate the flag if the checkbox is unchecked (false), as that's the non-default state.
+          // Correction: The provided template has them checked. Let's assume the user wants the form to show the default values. The generated command should reflect the options that are *explicitly chosen*. I'll generate the flags for all non-default values. A checked box is a "true" value and an unchecked box is a "false" value. I will add flags for non-default values, e.g., --no-routing if `routing` is false.
+          if (!formValue[option]) {
+            cmd += ` --no-${option.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+          }
+        } else {
+          // These are unchecked by default, so we add the flag if they are true
+          if (formValue[option]) {
+            cmd += ` --${option.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+          }
+        }
+      }
+    }
+
+    // A simplified logic that works better given the template's defaults
+    // For default-checked items, if unchecked, add --no-flag.
+    if (!formValue.routing) cmd += ' --no-routing';
+    if (!formValue.standalone) cmd += ' --no-standalone';
+    if (!formValue.strict) cmd += ' --no-strict';
+    if (!formValue.commit) cmd += ' --no-commit';
+    if (!formValue.createApplication) cmd += ' --no-create-application';
+    if (!formValue.interactive) cmd += ' --no-interactive';
+
+    // For default-unchecked items, if checked, add --flag.
+    if (formValue.ssr) cmd += ' --ssr';
+    if (formValue.zoneless) cmd += ' --zoneless';
+    if (formValue.skipGit) cmd += ' --skip-git';
+    if (formValue.skipInstall) cmd += ' --skip-install';
+    if (formValue.skipTests) cmd += ' --skip-tests';
+    if (formValue.minimal) cmd += ' --minimal';
+    if (formValue.inlineStyle) cmd += ' --inline-style';
+    if (formValue.inlineTemplate) cmd += ' --inline-template';
+    if (formValue.defaults) cmd += ' --defaults';
+    if (formValue.dryRun) cmd += ' --dry-run';
+    if (formValue.force) cmd += ' --force';
+
+    return cmd;
+  });
+
+  protected copyCommand() {
+    if (this.command() && navigator.clipboard) {
+      navigator.clipboard
+        .writeText(this.command())
+        .then(() => {
+          this.isCopied.set(true);
+          setTimeout(() => this.isCopied.set(false), 2000);
+        })
+        .catch((err) => {
+          console.error('Failed to copy text: ', err);
+        });
+    }
+  }
+}
