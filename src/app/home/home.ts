@@ -5,9 +5,13 @@ import {
   computed,
   signal,
   ViewEncapsulation,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +32,27 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
         <!-- Configuration Panel -->
         <div class="bg-white rounded-lg shadow-lg p-6">
-          <div class="flex items-center mb-6">
-            <i class="fas fa-cogs text-blue-600 text-xl mr-2"></i>
-            <h2 class="text-2xl font-semibold text-gray-800">Configuration</h2>
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center">
+              <i class="fas fa-cogs text-blue-600 text-xl mr-2"></i>
+              <h2 class="text-2xl font-semibold text-gray-800">Configuration</h2>
+            </div>
+            <div class="flex gap-2">
+              <button
+                (click)="clearStorage()"
+                class="px-3 py-1 bg-red-100 text-red-700 rounded-md hover:bg-red-200 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 text-sm"
+              >
+                <i class="fas fa-trash mr-1"></i>
+                Clear
+              </button>
+              <button
+                (click)="resetToDefaults()"
+                class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 text-sm"
+              >
+                <i class="fas fa-undo mr-1"></i>
+                Reset
+              </button>
+            </div>
           </div>
 
           <form [formGroup]="commandForm" class="space-y-6 mb-6">
@@ -474,44 +496,103 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Home {
+export class Home implements OnInit, OnDestroy {
+  private static readonly STORAGE_KEY = 'angular-command-generator-form';
   protected readonly commandForm: FormGroup;
   protected readonly isCopied = signal<boolean>(false);
+  private formSubscription?: Subscription;
 
   formValueSignal;
 
+  private readonly defaultValues = {
+    appName: 'my-angular-app',
+    directory: '',
+    style: 'css',
+    packageManager: '',
+    aiConfig: 'none',
+    collection: '',
+    prefix: 'app',
+    viewEncapsulation: '',
+    newProjectRoot: 'projects',
+    routing: true,
+    standalone: true,
+    strict: true,
+    ssr: false,
+    zoneless: false,
+    commit: true,
+    createApplication: true,
+    interactive: true,
+    skipGit: false,
+    skipInstall: false,
+    skipTests: false,
+    minimal: false,
+    inlineStyle: false,
+    inlineTemplate: false,
+    defaults: false,
+    dryRun: false,
+    force: false,
+  };
+
   constructor(private readonly fb: FormBuilder) {
-    this.commandForm = this.fb.group({
-      appName: ['my-angular-app'],
-      directory: [''],
-      style: ['css'],
-      packageManager: [''],
-      aiConfig: ['none'],
-      collection: [''],
-      prefix: ['app'],
-      viewEncapsulation: [''],
-      newProjectRoot: ['projects'],
-      routing: [true],
-      standalone: [true],
-      strict: [true],
-      ssr: [false],
-      zoneless: [false],
-      commit: [true],
-      createApplication: [true],
-      interactive: [true],
-      skipGit: [false],
-      skipInstall: [false],
-      skipTests: [false],
-      minimal: [false],
-      inlineStyle: [false],
-      inlineTemplate: [false],
-      defaults: [false],
-      dryRun: [false],
-      force: [false],
-    });
+    this.commandForm = this.fb.group(this.defaultValues);
     this.formValueSignal = toSignal(this.commandForm.valueChanges, {
       initialValue: this.commandForm.value,
     });
+  }
+
+  ngOnInit() {
+    this.loadFromStorage();
+    this.setupFormSubscription();
+  }
+
+  ngOnDestroy() {
+    if (this.formSubscription) {
+      this.formSubscription.unsubscribe();
+    }
+  }
+
+  private setupFormSubscription() {
+    // Debounce the form changes to avoid too frequent localStorage writes
+    this.formSubscription = this.commandForm.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((value) => {
+        this.saveToStorage(value);
+      });
+  }
+
+  private loadFromStorage() {
+    try {
+      const stored = localStorage.getItem(Home.STORAGE_KEY);
+      if (stored) {
+        const formData = JSON.parse(stored);
+        // Merge with defaults to handle new fields that might have been added
+        const mergedData = { ...this.defaultValues, ...formData };
+        this.commandForm.patchValue(mergedData, { emitEvent: false });
+      }
+    } catch (error) {
+      console.warn('Failed to load form data from localStorage:', error);
+    }
+  }
+
+  private saveToStorage(value: any) {
+    try {
+      localStorage.setItem(Home.STORAGE_KEY, JSON.stringify(value));
+    } catch (error) {
+      console.warn('Failed to save form data to localStorage:', error);
+    }
+  }
+
+  protected clearStorage() {
+    try {
+      localStorage.removeItem(Home.STORAGE_KEY);
+      this.resetToDefaults();
+    } catch (error) {
+      console.warn('Failed to clear localStorage:', error);
+    }
+  }
+
+  protected resetToDefaults() {
+    this.commandForm.patchValue(this.defaultValues);
   }
 
   protected readonly command = computed(() => {
