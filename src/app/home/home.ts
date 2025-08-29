@@ -461,7 +461,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
             <div class="bg-gray-900 text-green-400 p-4 rounded-lg">
               <div class="flex items-start">
                 <span class="text-gray-500 mr-2">$</span>
-                <span id="linuxCommand" class="command-output flex-1 break-all">
+                <span id="command" class="command-output flex-1 break-all">
                   {{ command() }}
                 </span>
               </div>
