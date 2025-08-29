@@ -57,8 +57,14 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
           <form [formGroup]="commandForm" class="mb-6">
             <div class="space-y-8">
-              <!-- Row 1: App Name and Directory -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Basic Configuration Section -->
+              <div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-cog mr-1"></i>
+                  Basic Configuration
+                </h3>
+                <!-- Row 1: App Name and Directory -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- App Name -->
                 <div>
                   <label for="appName" class="block text-sm font-medium text-gray-700 mb-2">
@@ -178,10 +184,15 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     </p>
                   </div>
                 </div>
+                              </div>
               </div>
 
               <!-- Package Manager Section -->
               <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-box mr-1"></i>
+                  Package Management
+                </h3>
                 <!-- Row 3: Package Manager and Skip Install -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <!-- Package Manager -->
@@ -228,6 +239,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
               <!-- AI Tools Configuration Section -->
               <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-robot mr-1"></i>
+                  AI Tools Configuration
+                </h3>
                 <!-- Row 4: AI Tools Configuration and Component Prefix -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <!-- AI Config -->
@@ -448,7 +463,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                         Zoneless
                       </label>
                     </div>
-                    <p class="mt-1 text-xs text-gray-500 ml-6">Don't use zone.js</p>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Use modern change detection without Zone.js</p>
                   </div>
                 </div>
               </div>
