@@ -486,7 +486,7 @@ export class Home {
       directory: [''],
       style: ['css'],
       packageManager: [''],
-      aiConfig: [''],
+      aiConfig: ['none'],
       collection: [''],
       prefix: ['app'],
       viewEncapsulation: [''],
