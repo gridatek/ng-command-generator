@@ -76,7 +76,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             <div>
               <label for="directory" class="block text-sm font-medium text-gray-700 mb-2">
                 <i class="fas fa-folder mr-1"></i>
-                Directory (optional)
+                Directory
               </label>
               <input
                 type="text"
