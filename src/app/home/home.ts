@@ -528,7 +528,7 @@ export class Home {
     }
 
     // Other options
-    if (formValue.style && formValue.style !== 'scss') {
+    if (formValue.style && formValue.style !== 'css') {
       cmd += ` --style=${formValue.style}`;
     }
     if (formValue.packageManager && formValue.packageManager !== '') {
