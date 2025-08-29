@@ -6,6 +6,7 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -478,11 +479,13 @@ export class Home {
   protected readonly commandForm: FormGroup;
   protected readonly isCopied = signal<boolean>(false);
 
+  formValueSignal;
+
   constructor(private readonly fb: FormBuilder) {
     this.commandForm = this.fb.group({
       appName: ['my-angular-app'],
       directory: [''],
-      style: ['scss'],
+      style: ['css'],
       packageManager: [''],
       aiConfig: [''],
       collection: [''],
@@ -507,30 +510,15 @@ export class Home {
       dryRun: [false],
       force: [false],
     });
+    this.formValueSignal = toSignal(this.commandForm.valueChanges, {
+      initialValue: this.commandForm.value,
+    });
   }
 
   protected readonly command = computed(() => {
-    const formValue = this.commandForm.value;
+    const formValue = this.formValueSignal();
+
     let cmd = 'ng new';
-    const booleanOptions = [
-      'routing',
-      'standalone',
-      'strict',
-      'ssr',
-      'zoneless',
-      'commit',
-      'createApplication',
-      'interactive',
-      'skipGit',
-      'skipInstall',
-      'skipTests',
-      'minimal',
-      'inlineStyle',
-      'inlineTemplate',
-      'defaults',
-      'dryRun',
-      'force',
-    ];
 
     // Application Name and Directory
     if (formValue.appName) {
@@ -544,7 +532,7 @@ export class Home {
     if (formValue.style && formValue.style !== 'scss') {
       cmd += ` --style=${formValue.style}`;
     }
-    if (formValue.packageManager && formValue.packageManager !== 'npm') {
+    if (formValue.packageManager && formValue.packageManager !== '') {
       cmd += ` --package-manager=${formValue.packageManager}`;
     }
     if (formValue.aiConfig) {
@@ -564,35 +552,6 @@ export class Home {
     }
 
     // Boolean flags
-    for (const option of booleanOptions) {
-      if (formValue[option]) {
-        if (
-          option === 'routing' ||
-          option === 'standalone' ||
-          option === 'strict' ||
-          option === 'commit' ||
-          option === 'createApplication' ||
-          option === 'interactive'
-        ) {
-          // These are checked by default, so we only add the flag if they are false (the --no- form)
-          // As per the provided template, they are all checked, so their boolean value is true by default.
-          // I will not add these flags if they are true, since that's the default behavior.
-          // The form logic will be to generate the flag if the checkbox is unchecked (false), as that's the non-default state.
-          // Correction: The provided template has them checked. Let's assume the user wants the form to show the default values. The generated command should reflect the options that are *explicitly chosen*. I'll generate the flags for all non-default values. A checked box is a "true" value and an unchecked box is a "false" value. I will add flags for non-default values, e.g., --no-routing if `routing` is false.
-          if (!formValue[option]) {
-            cmd += ` --no-${option.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
-          }
-        } else {
-          // These are unchecked by default, so we add the flag if they are true
-          if (formValue[option]) {
-            cmd += ` --${option.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
-          }
-        }
-      }
-    }
-
-    // A simplified logic that works better given the template's defaults
-    // For default-checked items, if unchecked, add --no-flag.
     if (!formValue.routing) cmd += ' --no-routing';
     if (!formValue.standalone) cmd += ' --no-standalone';
     if (!formValue.strict) cmd += ' --no-strict';
@@ -600,7 +559,6 @@ export class Home {
     if (!formValue.createApplication) cmd += ' --no-create-application';
     if (!formValue.interactive) cmd += ' --no-interactive';
 
-    // For default-unchecked items, if checked, add --flag.
     if (formValue.ssr) cmd += ' --ssr';
     if (formValue.zoneless) cmd += ' --zoneless';
     if (formValue.skipGit) cmd += ' --skip-git';
