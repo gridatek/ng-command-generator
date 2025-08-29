@@ -127,49 +127,55 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </div>
               </div>
 
-              <!-- Row 2: Style Format and View Encapsulation -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Style Format -->
-                <div>
-                  <label for="style" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-paint-brush mr-1"></i>
-                    Style Format
-                  </label>
-                  <select
-                    id="style"
-                    formControlName="style"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    <option value="css">CSS</option>
-                    <option value="scss">SCSS</option>
-                    <option value="sass">Sass</option>
-                    <option value="less">Less</option>
-                  </select>
-                  <p class="mt-1 text-xs text-gray-500">Stylesheet format for components</p>
-                </div>
+              <div class=" pt-4">
+                <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                  <i class="fas fa-palette mr-1"></i>
+                  Styling
+                </h3>
+                <!-- Row 2: Style Format and View Encapsulation -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <!-- Style Format -->
+                  <div>
+                    <label for="style" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-paint-brush mr-1"></i>
+                      Style Format
+                    </label>
+                    <select
+                      id="style"
+                      formControlName="style"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      <option value="css">CSS</option>
+                      <option value="scss">SCSS</option>
+                      <option value="sass">Sass</option>
+                      <option value="less">Less</option>
+                    </select>
+                    <p class="mt-1 text-xs text-gray-500">Stylesheet format for components</p>
+                  </div>
 
-                <!-- View Encapsulation -->
-                <div>
-                  <label
-                    for="viewEncapsulation"
-                    class="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    <i class="fas fa-eye mr-1"></i>
-                    View Encapsulation
-                  </label>
-                  <select
-                    id="viewEncapsulation"
-                    formControlName="viewEncapsulation"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    <option value="">Default (Emulated)</option>
-                    <option value="Emulated">Emulated</option>
-                    <option value="None">None</option>
-                    <option value="ShadowDom">ShadowDom</option>
-                  </select>
-                  <p class="mt-1 text-xs text-gray-500">
-                    CSS encapsulation strategy for components
-                  </p>
+                  <!-- View Encapsulation -->
+                  <div>
+                    <label
+                      for="viewEncapsulation"
+                      class="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      <i class="fas fa-eye mr-1"></i>
+                      View Encapsulation
+                    </label>
+                    <select
+                      id="viewEncapsulation"
+                      formControlName="viewEncapsulation"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      <option value="">Default (Emulated)</option>
+                      <option value="Emulated">Emulated</option>
+                      <option value="None">None</option>
+                      <option value="ShadowDom">ShadowDom</option>
+                    </select>
+                    <p class="mt-1 text-xs text-gray-500">
+                      CSS encapsulation strategy for components
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -239,11 +245,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </select>
                   <p class="mt-1 text-xs text-gray-500">AI assistant integration for development</p>
                 </div>
-              </div>
 
-              <!-- Row 5: Collection and New Project Root -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Collection -->
                 <div>
                   <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
                     <i class="fas fa-layer-group mr-1"></i>
@@ -260,6 +262,11 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     Schematics collection to use for generation
                   </p>
                 </div>
+              </div>
+
+              <!-- Row 5: Collection and New Project Root -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Collection -->
               </div>
             </div>
 
@@ -348,8 +355,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
             <div class=" pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-sliders-h mr-1"></i>
-                Project Features & Options
+                <i class="fas fa-cog mr-1"></i>
+                Core Features
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -399,7 +406,15 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </div>
                   <p class="mt-1 text-xs text-gray-500 ml-6">Enable stricter type checking</p>
                 </div>
+              </div>
+            </div>
 
+            <div class=" pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-rocket mr-1"></i>
+                Advanced Features
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <div class="flex items-center">
                     <input
@@ -431,7 +446,39 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </div>
                   <p class="mt-1 text-xs text-gray-500 ml-6">Don't use zone.js</p>
                 </div>
+              </div>
+            </div>
 
+            <div class=" pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-sliders-h mr-1"></i>
+                Testing Options
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="skipTests"
+                      formControlName="skipTests"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="skipTests" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-vial mr-1"></i>
+                      Skip Tests
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Skip test file generation</p>
+                </div>
+              </div>
+            </div>
+
+            <div class=" pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-sliders-h mr-1"></i>
+                Generation Options
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <div class="flex items-center">
                     <input
@@ -448,21 +495,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   <p class="mt-1 text-xs text-gray-500 ml-6">Create initial application</p>
                 </div>
 
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="skipTests"
-                      formControlName="skipTests"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="skipTests" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-vial mr-1"></i>
-                      Skip Tests
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Skip test file generation</p>
-                </div>
                 <div>
                   <div class="flex items-center">
                     <input
