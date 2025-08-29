@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular v17+ Command Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .command-output {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', Courier, monospace;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: #1f2937;
+            color: white;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .slide-enter {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .angular-gradient {
+            background: linear-gradient(135deg, #dd0031 0%, #c3002f 100%);
+        }
+
+        .feature-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-center mb-4">
+                <div class="angular-gradient p-3 rounded-lg mr-4 shadow-lg">
+                    <i class="fab fa-angular text-white text-3xl"></i>
+                </div>
+                <div class="text-left">
+                    <h1 class="text-4xl font-bold text-gray-800">Angular v17+ Command Generator</h1>
+                    <div class="flex items-center mt-2">
+                        <span class="feature-badge text-white px-3 py-1 rounded-full text-sm font-semibold mr-2">
+                            ✨ New Control Flow
+                        </span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold mr-2">
+                            🚀 Standalone Components
+                        </span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            ⚡ Application Builder
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-gray-600 text-lg">Generate optimized <code class="bg-gray-200 px-2 py-1 rounded font-mono">ng new</code> commands with Angular v17+ features</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Configuration Panel -->
+            <div class="bg-white rounded-xl shadow-xl p-6 border border-gray-200">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-2 rounded-lg mr-3">
+                        <i class="fas fa-cogs text-blue-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Project Configuration</h2>
+                </div>
+
+                <form id="configForm" class="space-y-6">
+                    <!-- App Name -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-rocket mr-1 text-red-500"></i>
+                            Project Name *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="appName" 
+                            value="my-angular-v17-app"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                            placeholder="my-angular-v17-app"
+                            required>
+                        <p class="text-xs text-gray-500 mt-1">This will be your workspace and initial project name</p>
+                    </div>
+
+                    <!-- Directory -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-folder-open mr-1 text-yellow-500"></i>
+                            Target Directory
+                        </label>
+                        <input 
+                            type="text" 
+                            id="directory" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                            placeholder="Leave empty to use current directory">
+                        <p class="text-xs text-gray-500 mt-1">Optional: Specify where to create the project</p>
+                    </div>
+
+                    <!-- Angular v17+ Features -->
+                    <div class="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-4">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-3 flex items-center">
+                            <i class="fas fa-star mr-2"></i>
+                            Angular v17+ Features
+                        </h3>
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="standalone" checked class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                                <label for="standalone" class="ml-3 block text-sm text-purple-700 tooltip font-medium">
+                                    <i class="fas fa-cube mr-1"></i>
+                                    Standalone Components (Recommended)
+                                    <span class="tooltiptext">Use the new standalone API without NgModules. This is the modern Angular approach and default in v17+</span>
+                                </label>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="newControlFlow" checked class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                                <label for="newControlFlow" class="ml-3 block text-sm text-purple-700 font-medium">
+                                    <i class="fas fa-code-branch mr-1"></i>
+                                    New Control Flow (@if, @for, @switch)
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="applicationBuilder" checked class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                                <label for="applicationBuilder" class="ml-3 block text-sm text-purple-700 tooltip font-medium">
+                                    <i class="fas fa-tools mr-1"></i>
+                                    Application Builder (esbuild + Vite)
+                                    <span class="tooltiptext">Use the new application builder for faster builds and better development experience</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Style & Build Configuration -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-paint-brush mr-1 text-pink-500"></i>
+                                Styling
+                            </label>
+                            <select 
+                                id="style" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                                <option value="css">CSS</option>
+                                <option value="scss" selected>SCSS (Recommended)</option>
+                                <option value="sass">Sass</option>
+                                <option value="less">Less</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i class="fas fa-box mr-1 text-green-500"></i>
+                                Package Manager
+                            </label>
+                            <select 
+                                id="packageManager" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                                <option value="">Auto-detect</option>
+                                <option value="npm">npm</option>
+                                <option value="yarn">Yarn</option>
+                                <option value="pnpm" selected>pnpm (Fast & Efficient)</option>
+                                <option value="bun">Bun (Ultra Fast)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- AI & Development Tools -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-robot mr-1 text-blue-500"></i>
+                            AI Development Assistant
+                        </label>
+                        <select 
+                            id="aiConfig" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                            <option value="">None</option>
+                            <option value="claude">Claude (Anthropic)</option>
+                            <option value="copilot">GitHub Copilot</option>
+                            <option value="cursor">Cursor IDE</option>
+                            <option value="gemini">Google Gemini</option>
+                            <option value="jetbrains">JetBrains AI</option>
+                            <option value="windsurf">Windsurf</option>
+                        </select>
+                        <p class="text-xs text-gray-500 mt-1">Generate AI-specific configuration files</p>
+                    </div>
+
+                    <!-- Modern Angular Features -->
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-semibold text-gray-700 flex items-center">
+                            <i class="fas fa-layer-group mr-2 text-indigo-500"></i>
+                            Modern Angular Features
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="routing" checked class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="routing" class="ml-3 block text-sm text-gray-700 tooltip">
+                                    <i class="fas fa-route mr-1"></i>
+                                    Angular Router
+                                    <span class="tooltiptext">Add routing support with lazy loading and guards</span>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="strict" checked class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="strict" class="ml-3 block text-sm text-gray-700 tooltip">
+                                    <i class="fas fa-shield-alt mr-1"></i>
+                                    Strict Mode
+                                    <span class="tooltiptext">Enable strict TypeScript and Angular compiler options for better code quality</span>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="ssr" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="ssr" class="ml-3 block text-sm text-gray-700 tooltip">
+                                    <i class="fas fa-server mr-1"></i>
+                                    SSR + Hydration
+                                    <span class="tooltiptext">Server-Side Rendering with Angular Universal and new hydration features</span>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="zoneless" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                <label for="zoneless" class="ml-3 block text-sm text-gray-700 tooltip">
+                                    <i class="fas fa-lightning-bolt mr-1"></i>
+                                    Zoneless Change Detection
+                                    <span class="tooltiptext">Experimental: Use signals-based change detection without Zone.js</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Development Options -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                            <i class="fas fa-code mr-2 text-gray-600"></i>
+                            Development Options
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="skipGit" class="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded">
+                                <label for="skipGit" class="ml-3 block text-sm text-gray-700">
+                                    <i class="fab fa-git-alt mr-1"></i>
+                                    Skip Git initialization
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="skipInstall" class="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded">
+                                <label for="skipInstall" class="ml-3 block text-sm text-gray-700">
+                                    <i class="fas fa-download mr-1"></i>
+                                    Skip package installation
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="skipTests" class="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded">
+                                <label for="skipTests" class="ml-3 block text-sm text-gray-700">
+                                    <i class="fas fa-vial mr-1"></i>
+                                    Skip test files
+                                </label>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="dryRun" class="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded">
+                                <label for="dryRun" class="ml-3 block text-sm text-gray-700 tooltip">
+                                    <i class="fas fa-eye mr-1"></i>
+                                    Dry run (preview only)
+                                    <span class="tooltiptext">Show what would be created without actually creating files</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Configuration -->
+                    <details class="border border-gray-200 rounded-lg">
+                        <summary class="p-4 bg-gray-50 rounded-lg cursor-pointer font-semibold text-gray-700 hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-sliders-h mr-2"></i>
+                            Advanced Configuration
+                        </summary>
+                        <div class="p-4 space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Component Prefix</label>
+                                    <input 
+                                        type="text" 
+                                        id="prefix" 
+                                        value="app"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">View Encapsulation</label>
+                                    <select 
+                                        id="viewEncapsulation" 
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="">Default (Emulated)</option>
+                                        <option value="Emulated">Emulated</option>
+                                        <option value="None">None</option>
+                                        <option value="ShadowDom">ShadowDom</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Schematics Collection</label>
+                                <input 
+                                    type="text" 
+                                    id="collection" 
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="@angular/material, @ngrx/schematics, etc.">
+                            </div>
+                        </div>
+                    </details>
+                </form>
+            </div>
+
+            <!-- Generated Commands -->
+            <div class="bg-white rounded-xl shadow-xl p-6 border border-gray-200">
+                <div class="flex items-center mb-6">
+                    <div class="bg-green-100 p-2 rounded-lg mr-3">
+                        <i class="fas fa-terminal text-green-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Generated Commands</h2>
+                </div>
+
+                <!-- Command Preview -->
+                <div class="mb-6 slide-enter">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-lg font-semibold text-gray-700 flex items-center">
+                            <i class="fas fa-code mr-2 text-blue-600"></i>
+                            Create Project Command
+                        </h3>
+                        <button 
+                            onclick="copyCommand('mainCommand')" 
+                            class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md">
+                            <i class="fas fa-copy mr-2"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg border border-gray-700">
+                        <div class="flex items-start">
+                            <span class="text-gray-500 mr-2 select-none">$</span>
+                            <span id="mainCommand" class="command-output flex-1 break-all">ng new my-angular-v17-app</span>
+                        </div>
+                    </div>
+                    <div class="mt-2 text-xs text-gray-600 bg-gray-50 p-2 rounded">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Works on Windows (Command Prompt, PowerShell), macOS, and Linux
+                    </div>
+                </div>
+
+                <!-- Post-Installation Commands -->
+                <div class="mb-6 slide-enter">
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-plus-circle mr-2 text-purple-600"></i>
+                        Recommended Next Steps
+                    </h3>
+                    
+                    <div class="space-y-3">
+                        <!-- Navigate to project -->
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="font-medium text-purple-800 text-sm">1. Navigate to project:</p>
+                                <button onclick="copyCommand('cdCommand')" class="text-purple-600 hover:text-purple-800 text-xs">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <code id="cdCommand" class="text-purple-700 text-sm">cd my-angular-v17-app</code>
+                        </div>
+
+                        <!-- Add Tailwind CSS -->
+                        <div class="bg-cyan-50 border border-cyan-200 rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="font-medium text-cyan-800 text-sm">2. Add Tailwind CSS:</p>
+                                <button onclick="copyCommand('tailwindCommand')" class="text-cyan-600 hover:text-cyan-800 text-xs">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <code id="tailwindCommand" class="text-cyan-700 text-sm">ng add @ngtw/tailwind</code>
+                        </div>
+
+                        <!-- Add Angular Material + CDK -->
+                        <div class="bg-pink-50 border border-pink-200 rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="font-medium text-pink-800 text-sm">3. Add Angular Material + CDK:</p>
+                                <button onclick="copyCommand('materialCommand')" class="text-pink-600 hover:text-pink-800 text-xs">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <code id="materialCommand" class="text-pink-700 text-sm">ng add @angular/material</code>
+                        </div>
+
+                        <!-- Start development server -->
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="font-medium text-green-800 text-sm">4. Start development server:</p>
+                                <button onclick="copyCommand('serveCommand')" class="text-green-600 hover:text-green-800 text-xs">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <code id="serveCommand" class="text-green-700 text-sm">ng serve</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Angular v17+ Features Info -->
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-indigo-900 mb-3 flex items-center">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Angular v17+ Benefits
+                    </h4>
+                    <ul class="text-sm text-indigo-800 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-2 mt-0.5 text-green-500 text-xs"></i>
+                            <span><strong>New Control Flow:</strong> @if, @for, @switch syntax for better performance and type safety</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-2 mt-0.5 text-green-500 text-xs"></i>
+                            <span><strong>Application Builder:</strong> Up to 87% faster builds with esbuild and Vite integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-2 mt-0.5 text-green-500 text-xs"></i>
+                            <span><strong>Standalone Components:</strong> Simplified architecture without NgModules</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-2 mt-0.5 text-green-500 text-xs"></i>
+                            <span><strong>New Lifecycle Hooks:</strong> afterNextRender(), afterRender() for DOM operations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-2 mt-0.5 text-green-500 text-xs"></i>
+                            <span><strong>Improved SSR:</strong> Better hydration and non-destructive full app hydration</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Version Notice -->
+                <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <p class="text-sm text-yellow-800 flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <strong>Note:</strong> Ensure you have Angular CLI v17+ installed: 
+                        <code class="ml-2 bg-yellow-100 px-2 py-1 rounded text-xs">npm install -g @angular/cli@latest</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate command function with Angular v17+ optimizations
+        function generateCommand() {
+            const inputs = document.querySelectorAll('#configForm input, #configForm select');
+            
+            let command = 'ng new';
+            const appName = document.getElementById('appName').value.trim() || 'my-angular-v17-app';
+            command += ` ${appName}`;
+
+            // Add options based on form inputs
+            inputs.forEach(input => {
+                const value = input.value.trim();
+                const name = input.id;
+                
+                if (input.type === 'checkbox') {
+                    if (input.checked) {
+                        switch(name) {
+                            case 'routing':
+                                command += ' --routing';
+                                break;
+                            case 'standalone':
+                                command += ' --standalone';
+                                break;
+                            case 'strict':
+                                command += ' --strict';
+                                break;
+                            case 'ssr':
+                                command += ' --ssr';
+                                break;
+                            case 'zoneless':
+                                command += ' --zoneless';
+                                break;
+                            case 'skipGit':
+                                command += ' --skip-git';
+                                break;
+                            case 'skipInstall':
+                                command += ' --skip-install';
+                                break;
+                            case 'skipTests':
+                                command += ' --skip-tests';
+                                break;
+                            case 'dryRun':
+                                command += ' --dry-run';
+                                break;
+                            // Angular v17+ specific features are enabled by default with the right flags
+                        }
+                    }
+                } else if (input.type === 'text' || input.tagName === 'SELECT') {
+                    if (value && name !== 'appName') {
+                        switch(name) {
+                            case 'directory':
+                                command += ` --directory="${value}"`;
+                                break;
+                            case 'style':
+                                if (value !== 'css') command += ` --style=${value}`;
+                                break;
+                            case 'packageManager':
+                                if (value && value !== 'npm') command += ` --package-manager=${value}`;
+                                break;
+                            case 'aiConfig':
+                                if (value) command += ` --ai-config=${value}`;
+                                break;
+                            case 'collection':
+                                if (value) command += ` --collection=${value}`;
+                                break;
+                            case 'prefix':
+                                if (value !== 'app') command += ` --prefix=${value}`;
+                                break;
+                            case 'viewEncapsulation':
+                                if (value && value !== 'Emulated') command += ` --view-encapsulation=${value}`;
+                                break;
+                        }
+                    }
+                }
+            });
+
+            // Update command display
+            document.getElementById('mainCommand').textContent = command;
+            
+            // Update navigation command
+            document.getElementById('cdCommand').textContent = `cd ${appName}`;
+        }
+
+        // Copy command to clipboard with enhanced feedback
+        async function copyCommand(elementId) {
+            const command = document.getElementById(elementId).textContent;
+            try {
+                await navigator.clipboard.writeText(command);
+                showNotification('✅ Command copied to clipboard!', 'success');
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = command;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('✅ Command copied to clipboard!', 'success');
+            }
+        }
+
+        // Enhanced notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+            notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 transition-all transform translate-x-0`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-3 text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    notification.style.transform = 'translateX(100%)';
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        if (document.body.contains(notification)) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 3000);
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to all form inputs
+            const inputs = document.querySelectorAll('#configForm input, #configForm select');
+            inputs.forEach(input => {
+                input.addEventListener('change', generateCommand);
+                input.addEventListener('input', generateCommand);
+            });
+
+            // Handle special interactions for Angular v17+ features
+            document.getElementById('skipGit').addEventListener('change', function() {
+                if (this.checked) {
+                    showNotification('⚠️ Git initialization will be skipped', 'info');
+                }
+                generateCommand();
+            });
+
+            document.getElementById('zoneless').addEventListener('change', function() {
+                if (this.checked) {
+                    showNotification('🧪 Experimental: Zoneless change detection enabled', 'info');
+                    // Auto-enable signals-based features
+                    document.getElementById('standalone').checked = true;
+                }
+                generateCommand();
+            });
+
+            document.getElementById('ssr').addEventListener('change', function() {
+                if (this.checked) {
+                    showNotification('🚀 SSR will be configured with Angular Universal', 'info');
+                    // SSR works best with standalone components
+                    document.getElementById('standalone').checked = true;
+                }
+                generateCommand();
+            });
+
+            document.getElementById('standalone').addEventListener('change', function() {
+                if (!this.checked) {
+                    // Warn about using NgModules
+                    showNotification('⚠️ Consider using standalone components for modern Angular apps', 'info');
+                }
+                generateCommand();
+            });
+
+            // Handle package manager selection feedback
+            document.getElementById('packageManager').addEventListener('change', function() {
+                const value = this.value;
+                if (value === 'pnpm') {
+                    showNotification('⚡ pnpm selected: Fast, disk efficient package manager', 'info');
+                } else if (value === 'bun') {
+                    showNotification('🔥 Bun selected: Ultra-fast package manager and runtime', 'info');
+                }
+                generateCommand();
+            });
+
+            // Enhanced AI config feedback
+            document.getElementById('aiConfig').addEventListener('change', function() {
+                const value = this.value;
+                if (value) {
+                    showNotification(`🤖 ${value} configuration will be generated`, 'info');
+                }
+                generateCommand();
+            });
+
+            // Generate initial command
+            generateCommand();
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+C or Cmd+C to copy main command
+                if ((e.ctrlKey || e.metaKey) && e.key === 'c' && !e.target.matches('input, textarea')) {
+                    e.preventDefault();
+                    copyCommand('mainCommand');
+                }
+                
+                // Ctrl+R or Cmd+R to regenerate (prevent page reload and regenerate)
+                if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+                    e.preventDefault();
+                    generateCommand();
+                    showNotification('🔄 Command regenerated', 'info');
+                }
+            });
+
+            // Add form validation
+            document.getElementById('appName').addEventListener('input', function() {
+                const value = this.value.trim();
+                const isValid = /^[a-zA-Z][a-zA-Z0-9-]*$/.test(value);
+                
+                if (!isValid && value.length > 0) {
+                    this.classList.add('border-red-500', 'bg-red-50');
+                    this.classList.remove('border-gray-300');
+                    if (!document.getElementById('name-error')) {
+                        const error = document.createElement('p');
+                        error.id = 'name-error';
+                        error.className = 'text-red-500 text-xs mt-1';
+                        error.textContent = 'Project name must start with a letter and contain only letters, numbers, and hyphens';
+                        this.parentElement.appendChild(error);
+                    }
+                } else {
+                    this.classList.remove('border-red-500', 'bg-red-50');
+                    this.classList.add('border-gray-300');
+                    const error = document.getElementById('name-error');
+                    if (error) {
+                        error.remove();
+                    }
+                }
+                generateCommand();
+            });
+
+            // Add tooltips for better UX
+            const tooltips = document.querySelectorAll('.tooltip');
+            tooltips.forEach(tooltip => {
+                tooltip.addEventListener('mouseenter', function() {
+                    const tooltipText = this.querySelector('.tooltiptext');
+                    if (tooltipText) {
+                        setTimeout(() => {
+                            tooltipText.style.visibility = 'visible';
+                            tooltipText.style.opacity = '1';
+                        }, 300);
+                    }
+                });
+
+                tooltip.addEventListener('mouseleave', function() {
+                    const tooltipText = this.querySelector('.tooltiptext');
+                    if (tooltipText) {
+                        tooltipText.style.visibility = 'hidden';
+                        tooltipText.style.opacity = '0';
+                    }
+                });
+            });
+        });
+
+        // Add smooth scrolling and focus management
+        function focusOnCommand() {
+            document.getElementById('mainCommand').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
+
+        // Export configuration as JSON
+        function exportConfig() {
+            const config = {};
+            const inputs = document.querySelectorAll('#configForm input, #configForm select');
+            
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    config[input.id] = input.checked;
+                } else {
+                    config[input.id] = input.value;
+                }
+            });
+
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'angular-project-config.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('📁 Configuration exported as JSON', 'success');
+        }
+
+        // Add export button functionality (you can add this button to the UI if needed)
+        // <button onclick="exportConfig()" class="text-sm text-blue-600 hover:text-blue-800">Export Config</button>
+    </script>
+</body>
+</html>
