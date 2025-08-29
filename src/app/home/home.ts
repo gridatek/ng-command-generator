@@ -76,6 +76,24 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   <p class="mt-1 text-xs text-gray-500">The name of your Angular application</p>
                 </div>
 
+                <!-- Component Prefix -->
+                <div>
+                  <label for="prefix" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-code mr-1"></i>
+                    Component Prefix
+                  </label>
+                  <input
+                    type="text"
+                    id="prefix"
+                    formControlName="prefix"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="app"
+                  />
+                  <p class="mt-1 text-xs text-gray-500">Prefix for component selectors</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Directory -->
                 <div>
                   <label for="directory" class="block text-sm font-medium text-gray-700 mb-2">
@@ -90,6 +108,22 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     placeholder="Leave empty for current directory"
                   />
                   <p class="mt-1 text-xs text-gray-500">Custom directory path for the project</p>
+                </div>
+
+                <!-- New Project Root -->
+                <div>
+                  <label for="newProjectRoot" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-sitemap mr-1"></i>
+                    New Project Root
+                  </label>
+                  <input
+                    type="text"
+                    id="newProjectRoot"
+                    formControlName="newProjectRoot"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="projects"
+                  />
+                  <p class="mt-1 text-xs text-gray-500">Root directory for new projects</p>
                 </div>
               </div>
 
@@ -116,7 +150,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
                 <!-- View Encapsulation -->
                 <div>
-                  <label for="viewEncapsulation" class="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    for="viewEncapsulation"
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     <i class="fas fa-eye mr-1"></i>
                     View Encapsulation
                   </label>
@@ -130,7 +167,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <option value="None">None</option>
                     <option value="ShadowDom">ShadowDom</option>
                   </select>
-                  <p class="mt-1 text-xs text-gray-500">CSS encapsulation strategy for components</p>
+                  <p class="mt-1 text-xs text-gray-500">
+                    CSS encapsulation strategy for components
+                  </p>
                 </div>
               </div>
 
@@ -200,22 +239,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </select>
                   <p class="mt-1 text-xs text-gray-500">AI assistant integration for development</p>
                 </div>
-
-                <!-- Component Prefix -->
-                <div>
-                  <label for="prefix" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-code mr-1"></i>
-                    Component Prefix
-                  </label>
-                  <input
-                    type="text"
-                    id="prefix"
-                    formControlName="prefix"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="app"
-                  />
-                  <p class="mt-1 text-xs text-gray-500">Prefix for component selectors</p>
-                </div>
               </div>
 
               <!-- Row 5: Collection and New Project Root -->
@@ -233,23 +256,52 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="@angular/material, @ngrx/schematics, etc."
                   />
-                  <p class="mt-1 text-xs text-gray-500">Schematics collection to use for generation</p>
+                  <p class="mt-1 text-xs text-gray-500">
+                    Schematics collection to use for generation
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Single File Component Options -->
+            <div class="border-t pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-file-code mr-1"></i>
+                Single File Component
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="inlineTemplate"
+                      formControlName="inlineTemplate"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="inlineTemplate" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-file-code mr-1"></i>
+                      Inline Template
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">
+                    Include templates in component files
+                  </p>
                 </div>
 
-                <!-- New Project Root -->
                 <div>
-                  <label for="newProjectRoot" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-sitemap mr-1"></i>
-                    New Project Root
-                  </label>
-                  <input
-                    type="text"
-                    id="newProjectRoot"
-                    formControlName="newProjectRoot"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="projects"
-                  />
-                  <p class="mt-1 text-xs text-gray-500">Root directory for new projects</p>
+                  <div class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="inlineStyle"
+                      formControlName="inlineStyle"
+                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label for="inlineStyle" class="ml-2 block text-sm text-gray-700">
+                      <i class="fas fa-code mr-1"></i>
+                      Inline Style
+                    </label>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Include styles in component files</p>
                 </div>
               </div>
             </div>
@@ -327,7 +379,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                       Standalone
                     </label>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Use standalone components (recommended)</p>
+                  <p class="mt-1 text-xs text-gray-500 ml-6">Use standalone components</p>
                 </div>
 
                 <div>
@@ -446,47 +498,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </div>
             </div>
 
-            <!-- Single File Component Options -->
-            <div class="border-t pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-file-code mr-1"></i>
-                Single File Component
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="inlineTemplate"
-                      formControlName="inlineTemplate"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="inlineTemplate" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-file-code mr-1"></i>
-                      Inline Template
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Include templates in component files</p>
-                </div>
-
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="inlineStyle"
-                      formControlName="inlineStyle"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="inlineStyle" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-code mr-1"></i>
-                      Inline Style
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Include styles in component files</p>
-                </div>
-              </div>
-            </div>
-
             <!-- Advanced Options -->
             <div class="border-t pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
@@ -494,6 +505,15 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 Advanced Options
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+
+
+
+
+
+
+
+              
                 <div>
                   <div class="flex items-center">
                     <input
