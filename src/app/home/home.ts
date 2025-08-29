@@ -264,7 +264,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             </div>
 
             <!-- Single File Component Options -->
-            <div class="border-t pt-4">
+            <div class=" pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
                 <i class="fas fa-file-code mr-1"></i>
                 Single File Component
@@ -306,7 +306,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </div>
             </div>
 
-            <div class="border-t pt-4">
+            <div class=" pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
                 <i class="fas fa-file-code mr-1"></i>
                 Prompts
@@ -346,7 +346,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </div>
             </div>
 
-            <div class="border-t pt-4">
+            <div class=" pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
                 <i class="fas fa-sliders-h mr-1"></i>
                 Project Features & Options
@@ -482,7 +482,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             </div>
 
             <!-- Git Configuration -->
-            <div class="mt-6 border-t pt-4">
+            <div class="mt-6 pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
                 <i class="fas fa-git-alt mr-1"></i>
                 Git Configuration
@@ -522,7 +522,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </div>
             </div>
 
-            <div class="border-t pt-4">
+            <div class="pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
                 <i class="fas fa-sliders-h mr-1"></i>
                 How to create files?
