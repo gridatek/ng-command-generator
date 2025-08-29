@@ -65,126 +65,129 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </h3>
                 <!-- Row 1: App Name and Directory -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- App Name -->
-                <div>
-                  <label for="appName" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-tag mr-1"></i>
-                    Application Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="appName"
-                    formControlName="appName"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="my-angular-app"
-                    required
-                  />
-                  <p class="mt-1 text-xs text-gray-500">The name of your Angular application</p>
-                </div>
-
-                <!-- Component Prefix -->
-                <div>
-                  <label for="prefix" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-code mr-1"></i>
-                    Component Prefix
-                  </label>
-                  <input
-                    type="text"
-                    id="prefix"
-                    formControlName="prefix"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="app"
-                  />
-                  <p class="mt-1 text-xs text-gray-500">Prefix for component selectors</p>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Directory -->
-                <div>
-                  <label for="directory" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-folder mr-1"></i>
-                    Directory
-                  </label>
-                  <input
-                    type="text"
-                    id="directory"
-                    formControlName="directory"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Leave empty for current directory"
-                  />
-                  <p class="mt-1 text-xs text-gray-500">Custom directory path for the project</p>
-                </div>
-
-                <!-- New Project Root -->
-                <div>
-                  <label for="newProjectRoot" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-sitemap mr-1"></i>
-                    New Project Root
-                  </label>
-                  <input
-                    type="text"
-                    id="newProjectRoot"
-                    formControlName="newProjectRoot"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="projects"
-                  />
-                  <p class="mt-1 text-xs text-gray-500">Root directory for new projects</p>
-                </div>
-              </div>
-
-              <!-- Styling Section -->
-              <div class="border-t border-gray-200 pt-6">
-                <h3 class="text-lg font-semibold text-gray-700 mb-4">
-                  <i class="fas fa-palette mr-1"></i>
-                  Styling
-                </h3>
-                <!-- Row 2: Style Format and View Encapsulation -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <!-- Style Format -->
+                  <!-- App Name -->
                   <div>
-                    <label for="style" class="block text-sm font-medium text-gray-700 mb-2">
-                      <i class="fas fa-paint-brush mr-1"></i>
-                      Style Format
+                    <label for="appName" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-tag mr-1"></i>
+                      Application Name *
                     </label>
-                    <select
-                      id="style"
-                      formControlName="style"
+                    <input
+                      type="text"
+                      id="appName"
+                      formControlName="appName"
                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                      <option value="css">CSS</option>
-                      <option value="scss">SCSS</option>
-                      <option value="sass">Sass</option>
-                      <option value="less">Less</option>
-                    </select>
-                    <p class="mt-1 text-xs text-gray-500">Stylesheet format for components</p>
+                      placeholder="my-angular-app"
+                      required
+                    />
+                    <p class="mt-1 text-xs text-gray-500">The name of your Angular application</p>
                   </div>
 
-                  <!-- View Encapsulation -->
+                  <!-- Component Prefix -->
+                  <div>
+                    <label for="prefix" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-code mr-1"></i>
+                      Component Prefix
+                    </label>
+                    <input
+                      type="text"
+                      id="prefix"
+                      formControlName="prefix"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="app"
+                    />
+                    <p class="mt-1 text-xs text-gray-500">Prefix for component selectors</p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                  <!-- Directory -->
+                  <div>
+                    <label for="directory" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-folder mr-1"></i>
+                      Directory
+                    </label>
+                    <input
+                      type="text"
+                      id="directory"
+                      formControlName="directory"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="Leave empty for current directory"
+                    />
+                    <p class="mt-1 text-xs text-gray-500">Custom directory path for the project</p>
+                  </div>
+
+                  <!-- New Project Root -->
                   <div>
                     <label
-                      for="viewEncapsulation"
+                      for="newProjectRoot"
                       class="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      <i class="fas fa-eye mr-1"></i>
-                      View Encapsulation
+                      <i class="fas fa-sitemap mr-1"></i>
+                      New Project Root
                     </label>
-                    <select
-                      id="viewEncapsulation"
-                      formControlName="viewEncapsulation"
+                    <input
+                      type="text"
+                      id="newProjectRoot"
+                      formControlName="newProjectRoot"
                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                      <option value="">Default (Emulated)</option>
-                      <option value="Emulated">Emulated</option>
-                      <option value="None">None</option>
-                      <option value="ShadowDom">ShadowDom</option>
-                    </select>
-                    <p class="mt-1 text-xs text-gray-500">
-                      CSS encapsulation strategy for components
-                    </p>
+                      placeholder="projects"
+                    />
+                    <p class="mt-1 text-xs text-gray-500">Root directory for new projects</p>
                   </div>
                 </div>
-                              </div>
+
+                <!-- Styling Section -->
+                <div class="border-t border-gray-200 pt-6">
+                  <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                    <i class="fas fa-palette mr-1"></i>
+                    Styling
+                  </h3>
+                  <!-- Row 2: Style Format and View Encapsulation -->
+                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Style Format -->
+                    <div>
+                      <label for="style" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-paint-brush mr-1"></i>
+                        Style Format
+                      </label>
+                      <select
+                        id="style"
+                        formControlName="style"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      >
+                        <option value="css">CSS</option>
+                        <option value="scss">SCSS</option>
+                        <option value="sass">Sass</option>
+                        <option value="less">Less</option>
+                      </select>
+                      <p class="mt-1 text-xs text-gray-500">Stylesheet format for components</p>
+                    </div>
+
+                    <!-- View Encapsulation -->
+                    <div>
+                      <label
+                        for="viewEncapsulation"
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        <i class="fas fa-eye mr-1"></i>
+                        View Encapsulation
+                      </label>
+                      <select
+                        id="viewEncapsulation"
+                        formControlName="viewEncapsulation"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      >
+                        <option value="">Default (Emulated)</option>
+                        <option value="Emulated">Emulated</option>
+                        <option value="None">None</option>
+                        <option value="ShadowDom">ShadowDom</option>
+                      </select>
+                      <p class="mt-1 text-xs text-gray-500">
+                        CSS encapsulation strategy for components
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Package Manager Section -->
@@ -197,7 +200,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <!-- Package Manager -->
                   <div>
-                    <label for="packageManager" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      for="packageManager"
+                      class="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       <i class="fas fa-box mr-1"></i>
                       Package Manager
                     </label>
@@ -213,7 +219,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                       <option value="bun">bun</option>
                       <option value="cnpm">cnpm</option>
                     </select>
-                    <p class="mt-1 text-xs text-gray-500">Package manager to use for dependencies</p>
+                    <p class="mt-1 text-xs text-gray-500">
+                      Package manager to use for dependencies
+                    </p>
                   </div>
 
                   <!-- Skip Install -->
@@ -241,7 +249,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               <div class="border-t border-gray-200 pt-6">
                 <h3 class="text-lg font-semibold text-gray-700 mb-4">
                   <i class="fas fa-robot mr-1"></i>
-                  AI Tools Configuration
+                  DX Tools
                 </h3>
                 <!-- Row 4: AI Tools Configuration and Component Prefix -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -264,7 +272,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                       <option value="jetbrains">JetBrains</option>
                       <option value="windsurf">Windsurf</option>
                     </select>
-                    <p class="mt-1 text-xs text-gray-500">AI assistant integration for development</p>
+                    <p class="mt-1 text-xs text-gray-500">
+                      AI assistant integration for development
+                    </p>
                   </div>
 
                   <div>
@@ -463,7 +473,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                         Zoneless
                       </label>
                     </div>
-                    <p class="mt-1 text-xs text-gray-500 ml-6">Use modern change detection without Zone.js</p>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">
+                      Use modern change detection without Zone.js
+                    </p>
                   </div>
                 </div>
               </div>
