@@ -5,7 +5,17 @@
   "projects": {
     "ng-command-generator": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css",
+          "skipTests": true,
+          "inlineStyle": true,
+          "inlineTemplate": true,
+          "flat": true,
+          "viewEncapsulation": "None",
+          "changeDetection": "OnPush"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
