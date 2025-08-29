@@ -23,7 +23,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
           </div>
           <p class="text-gray-600 text-lg">
             Generate optimized <code class="bg-gray-200 px-2 py-1 rounded">ng new</code> commands
-            for Linux and Windows
           </p>
         </div>
 
