@@ -244,6 +244,43 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             </div>
 
 
+            <!-- Git Configuration -->
+            <div class="mt-6 border-t pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-git-alt mr-1"></i>
+                Git Configuration
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="commit"
+                    formControlName="commit"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label for="commit" class="ml-2 block text-sm text-gray-700 tooltip">
+                    <i class="fas fa-code-branch mr-1"></i>
+                    Initial Commit
+                    <span class="tooltiptext">Create initial Git commit</span>
+                  </label>
+                </div>
+
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="skipGit"
+                    formControlName="skipGit"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label for="skipGit" class="ml-2 block text-sm text-gray-700 tooltip">
+                    <i class="fas fa-git-alt mr-1"></i>
+                    Skip Git
+                    <span class="tooltiptext">Don't initialize Git repository</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
             <!-- Boolean Options -->
             <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="space-y-3">
@@ -316,20 +353,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <span class="tooltiptext">Don't use zone.js</span>
                   </label>
                 </div>
-
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="commit"
-                    formControlName="commit"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="commit" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-code-branch mr-1"></i>
-                    Initial Commit
-                    <span class="tooltiptext">Create initial Git commit</span>
-                  </label>
-                </div>
               </div>
 
               <div class="space-y-3">
@@ -358,20 +381,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                     <i class="fas fa-comments mr-1"></i>
                     Interactive
                     <span class="tooltiptext">Enable interactive prompts</span>
-                  </label>
-                </div>
-
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="skipGit"
-                    formControlName="skipGit"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="skipGit" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-git-alt mr-1"></i>
-                    Skip Git
-                    <span class="tooltiptext">Don't initialize Git repository</span>
                   </label>
                 </div>
 
