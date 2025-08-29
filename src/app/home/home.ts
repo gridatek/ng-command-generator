@@ -56,7 +56,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
           </div>
 
           <form [formGroup]="commandForm" class="mb-6">
-            <div class="space-y-6">
+            <div class="space-y-8">
               <!-- Row 1: App Name and Directory -->
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- App Name -->
@@ -127,8 +127,9 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </div>
               </div>
 
-              <div class=" pt-4">
-                <h3 class="text-lg font-semibold text-gray-700 mb-3">
+              <!-- Styling Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
                   <i class="fas fa-palette mr-1"></i>
                   Styling
                 </h3>
@@ -179,438 +180,453 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </div>
               </div>
 
-              <!-- Row 3: Package Manager and Skip Install -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Package Manager -->
-                <div>
-                  <label for="packageManager" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-box mr-1"></i>
-                    Package Manager
-                  </label>
-                  <select
-                    id="packageManager"
-                    formControlName="packageManager"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    <option value="">Default (npm)</option>
-                    <option value="npm">npm</option>
-                    <option value="yarn">yarn</option>
-                    <option value="pnpm">pnpm</option>
-                    <option value="bun">bun</option>
-                    <option value="cnpm">cnpm</option>
-                  </select>
-                  <p class="mt-1 text-xs text-gray-500">Package manager to use for dependencies</p>
-                </div>
-
-                <!-- Skip Install -->
-                <div class="flex items-end">
+              <!-- Package Manager Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <!-- Row 3: Package Manager and Skip Install -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <!-- Package Manager -->
                   <div>
-                    <div class="flex items-center h-10">
+                    <label for="packageManager" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-box mr-1"></i>
+                      Package Manager
+                    </label>
+                    <select
+                      id="packageManager"
+                      formControlName="packageManager"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      <option value="">Default (npm)</option>
+                      <option value="npm">npm</option>
+                      <option value="yarn">yarn</option>
+                      <option value="pnpm">pnpm</option>
+                      <option value="bun">bun</option>
+                      <option value="cnpm">cnpm</option>
+                    </select>
+                    <p class="mt-1 text-xs text-gray-500">Package manager to use for dependencies</p>
+                  </div>
+
+                  <!-- Skip Install -->
+                  <div class="flex items-end">
+                    <div>
+                      <div class="flex items-center h-10">
+                        <input
+                          type="checkbox"
+                          id="skipInstall"
+                          formControlName="skipInstall"
+                          class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                        />
+                        <label for="skipInstall" class="ml-2 block text-sm text-gray-700">
+                          <i class="fas fa-download mr-1"></i>
+                          Skip Install
+                        </label>
+                      </div>
+                      <p class="mt-1 text-xs text-gray-500">Skip package installation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Tools Configuration Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <!-- Row 4: AI Tools Configuration and Component Prefix -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <!-- AI Config -->
+                  <div>
+                    <label for="aiConfig" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-robot mr-1"></i>
+                      AI Tools Configuration
+                    </label>
+                    <select
+                      id="aiConfig"
+                      formControlName="aiConfig"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      <option value="none">None</option>
+                      <option value="claude">Claude</option>
+                      <option value="copilot">GitHub Copilot</option>
+                      <option value="cursor">Cursor</option>
+                      <option value="gemini">Gemini</option>
+                      <option value="jetbrains">JetBrains</option>
+                      <option value="windsurf">Windsurf</option>
+                    </select>
+                    <p class="mt-1 text-xs text-gray-500">AI assistant integration for development</p>
+                  </div>
+
+                  <div>
+                    <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-layer-group mr-1"></i>
+                      Schematics Collection
+                    </label>
+                    <input
+                      type="text"
+                      id="collection"
+                      formControlName="collection"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="@angular/material, @ngrx/schematics, etc."
+                    />
+                    <p class="mt-1 text-xs text-gray-500">
+                      Schematics collection to use for generation
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Single File Component Options -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-file-code mr-1"></i>
+                  Single File Component
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
                       <input
                         type="checkbox"
-                        id="skipInstall"
-                        formControlName="skipInstall"
+                        id="inlineTemplate"
+                        formControlName="inlineTemplate"
                         class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                       />
-                      <label for="skipInstall" class="ml-2 block text-sm text-gray-700">
-                        <i class="fas fa-download mr-1"></i>
-                        Skip Install
+                      <label for="inlineTemplate" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-file-code mr-1"></i>
+                        Inline Template
                       </label>
                     </div>
-                    <p class="mt-1 text-xs text-gray-500">Skip package installation</p>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">
+                      Include templates in component files
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="inlineStyle"
+                        formControlName="inlineStyle"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="inlineStyle" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-code mr-1"></i>
+                        Inline Style
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Include styles in component files</p>
                   </div>
                 </div>
               </div>
 
-              <!-- Row 4: AI Tools Configuration and Component Prefix -->
-              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- AI Config -->
-                <div>
-                  <label for="aiConfig" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-robot mr-1"></i>
-                    AI Tools Configuration
-                  </label>
-                  <select
-                    id="aiConfig"
-                    formControlName="aiConfig"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    <option value="none">None</option>
-                    <option value="claude">Claude</option>
-                    <option value="copilot">GitHub Copilot</option>
-                    <option value="cursor">Cursor</option>
-                    <option value="gemini">Gemini</option>
-                    <option value="jetbrains">JetBrains</option>
-                    <option value="windsurf">Windsurf</option>
-                  </select>
-                  <p class="mt-1 text-xs text-gray-500">AI assistant integration for development</p>
-                </div>
+              <!-- CLI Interaction Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-terminal mr-1"></i>
+                  CLI Interaction
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="interactive"
+                        formControlName="interactive"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="interactive" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-comments mr-1"></i>
+                        Interactive
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Enable interactive prompts</p>
+                  </div>
 
-                <div>
-                  <label for="collection" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-layer-group mr-1"></i>
-                    Schematics Collection
-                  </label>
-                  <input
-                    type="text"
-                    id="collection"
-                    formControlName="collection"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="@angular/material, @ngrx/schematics, etc."
-                  />
-                  <p class="mt-1 text-xs text-gray-500">
-                    Schematics collection to use for generation
-                  </p>
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="defaults"
+                        formControlName="defaults"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="defaults" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-magic mr-1"></i>
+                        Use Defaults
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Disable interactive prompts</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Single File Component Options -->
-            <div class=" pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-file-code mr-1"></i>
-                Single File Component
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="inlineTemplate"
-                      formControlName="inlineTemplate"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="inlineTemplate" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-file-code mr-1"></i>
-                      Inline Template
-                    </label>
+              <!-- Core Features Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-cog mr-1"></i>
+                  Core Features
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="routing"
+                        formControlName="routing"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="routing" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-route mr-1"></i>
+                        Routing
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Enable routing in the application</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">
-                    Include templates in component files
-                  </p>
-                </div>
 
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="inlineStyle"
-                      formControlName="inlineStyle"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="inlineStyle" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-code mr-1"></i>
-                      Inline Style
-                    </label>
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="standalone"
+                        formControlName="standalone"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="standalone" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-cube mr-1"></i>
+                        Standalone
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Use standalone components</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Include styles in component files</p>
-                </div>
-              </div>
-            </div>
 
-            <div class=" pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-terminal mr-1"></i>
-                CLI Interaction
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="interactive"
-                      formControlName="interactive"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="interactive" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-comments mr-1"></i>
-                      Interactive
-                    </label>
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="strict"
+                        formControlName="strict"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="strict" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-shield-alt mr-1"></i>
+                        Strict Mode
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Enable stricter type checking</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable interactive prompts</p>
-                </div>
-
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="defaults"
-                      formControlName="defaults"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="defaults" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-magic mr-1"></i>
-                      Use Defaults
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Disable interactive prompts</p>
                 </div>
               </div>
-            </div>
 
-            <div class=" pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-cog mr-1"></i>
-                Core Features
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="routing"
-                      formControlName="routing"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="routing" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-route mr-1"></i>
-                      Routing
-                    </label>
+              <!-- Advanced Features Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-rocket mr-1"></i>
+                  Advanced Features
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="ssr"
+                        formControlName="ssr"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="ssr" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-server mr-1"></i>
+                        SSR
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Server-Side Rendering</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable routing in the application</p>
-                </div>
 
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="standalone"
-                      formControlName="standalone"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="standalone" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-cube mr-1"></i>
-                      Standalone
-                    </label>
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="zoneless"
+                        formControlName="zoneless"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="zoneless" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-circle-notch mr-1"></i>
+                        Zoneless
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Don't use zone.js</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Use standalone components</p>
-                </div>
-
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="strict"
-                      formControlName="strict"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="strict" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-shield-alt mr-1"></i>
-                      Strict Mode
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Enable stricter type checking</p>
                 </div>
               </div>
-            </div>
 
-            <div class=" pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-rocket mr-1"></i>
-                Advanced Features
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="ssr"
-                      formControlName="ssr"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="ssr" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-server mr-1"></i>
-                      SSR
-                    </label>
+              <!-- Testing Options Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-vial mr-1"></i>
+                  Testing Options
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="skipTests"
+                        formControlName="skipTests"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="skipTests" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-vial mr-1"></i>
+                        Skip Tests
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Skip test file generation</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Server-Side Rendering</p>
-                </div>
-
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="zoneless"
-                      formControlName="zoneless"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="zoneless" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-circle-notch mr-1"></i>
-                      Zoneless
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Don't use zone.js</p>
                 </div>
               </div>
-            </div>
 
-            <div class=" pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-sliders-h mr-1"></i>
-                Testing Options
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="skipTests"
-                      formControlName="skipTests"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="skipTests" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-vial mr-1"></i>
-                      Skip Tests
-                    </label>
+              <!-- Generation Options Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-plus-circle mr-1"></i>
+                  Generation Options
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="createApplication"
+                        formControlName="createApplication"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="createApplication" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-plus-circle mr-1"></i>
+                        Create App
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Create initial application</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Skip test file generation</p>
+
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="minimal"
+                        formControlName="minimal"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="minimal" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-minus-circle mr-1"></i>
+                        Minimal
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Generate minimal workspace</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class=" pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-sliders-h mr-1"></i>
-                Generation Options
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="createApplication"
-                      formControlName="createApplication"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="createApplication" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-plus-circle mr-1"></i>
-                      Create App
-                    </label>
+              <!-- Git Setup Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-git-alt mr-1"></i>
+                  Git Setup
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="commit"
+                        formControlName="commit"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="commit" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-code-branch mr-1"></i>
+                        Initial Commit
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Create initial Git commit</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Create initial application</p>
-                </div>
 
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="minimal"
-                      formControlName="minimal"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="minimal" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-minus-circle mr-1"></i>
-                      Minimal
-                    </label>
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="skipGit"
+                        formControlName="skipGit"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="skipGit" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-git-alt mr-1"></i>
+                        Skip Git
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Don't initialize Git repository</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Generate minimal workspace</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Git Configuration -->
-            <div class="mt-6 pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-git-alt mr-1"></i>
-                Git Setup
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="commit"
-                      formControlName="commit"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="commit" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-code-branch mr-1"></i>
-                      Initial Commit
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Create initial Git commit</p>
-                </div>
-
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="skipGit"
-                      formControlName="skipGit"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="skipGit" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-git-alt mr-1"></i>
-                      Skip Git
-                    </label>
-                  </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Don't initialize Git repository</p>
                 </div>
               </div>
-            </div>
 
-            <div class="pt-4">
-              <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-play-circle mr-1"></i>
-                Execution Options
-              </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="dryRun"
-                      formControlName="dryRun"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="dryRun" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-play mr-1"></i>
-                      Dry Run
-                    </label>
+              <!-- Execution Options Section -->
+              <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                  <i class="fas fa-play-circle mr-1"></i>
+                  Execution Options
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="dryRun"
+                        formControlName="dryRun"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="dryRun" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-play mr-1"></i>
+                        Dry Run
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Preview without creating files</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Preview without creating files</p>
-                </div>
 
-                <div>
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="force"
-                      formControlName="force"
-                      class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label for="force" class="ml-2 block text-sm text-gray-700">
-                      <i class="fas fa-exclamation-triangle mr-1"></i>
-                      Force
-                    </label>
+                  <div>
+                    <div class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="force"
+                        formControlName="force"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label for="force" class="ml-2 block text-sm text-gray-700">
+                        <i class="fas fa-exclamation-triangle mr-1"></i>
+                        Force
+                      </label>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 ml-6">Overwrite existing files</p>
                   </div>
-                  <p class="mt-1 text-xs text-gray-500 ml-6">Overwrite existing files</p>
                 </div>
               </div>
             </div>
           </form>
 
-          <div class="flex items-center mb-6">
-            <i class="fas fa-terminal text-green-600 text-xl mr-2"></i>
-            <h2 class="text-2xl font-semibold text-gray-800">Generated Command</h2>
-          </div>
-
-          <div class="mb-6 slide-enter">
-            <div class="flex items-center justify-end mb-2">
-              <button
-                (click)="copyCommand()"
-                class="flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <i class="fas fa-copy mr-1"></i>
-                <span class="font-medium">{{ isCopied() ? 'Copied!' : 'Copy' }}</span>
-              </button>
+          <!-- Generated Command Section -->
+          <div class="border-t border-gray-200 pt-6">
+            <div class="flex items-center mb-6">
+              <i class="fas fa-terminal text-green-600 text-xl mr-2"></i>
+              <h2 class="text-2xl font-semibold text-gray-800">Generated Command</h2>
             </div>
-            <div class="bg-gray-900 text-green-400 p-4 rounded-lg">
-              <div class="flex items-start">
-                <span class="text-gray-500 mr-2">$</span>
-                <span id="command" class="command-output flex-1 break-all">
-                  {{ command() }}
-                </span>
+
+            <div class="mb-6 slide-enter">
+              <div class="flex items-center justify-end mb-2">
+                <button
+                  (click)="copyCommand()"
+                  class="flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <i class="fas fa-copy mr-1"></i>
+                  <span class="font-medium">{{ isCopied() ? 'Copied!' : 'Copy' }}</span>
+                </button>
+              </div>
+              <div class="bg-gray-900 text-green-400 p-4 rounded-lg">
+                <div class="flex items-start">
+                  <span class="text-gray-500 mr-2">$</span>
+                  <span id="command" class="command-output flex-1 break-all">
+                    {{ command() }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
