@@ -105,6 +105,24 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </select>
             </div>
 
+            <!-- View Encapsulation -->
+            <div>
+              <label for="viewEncapsulation" class="block text-sm font-medium text-gray-700 mb-2">
+                <i class="fas fa-eye mr-1"></i>
+                View Encapsulation
+              </label>
+              <select
+                id="viewEncapsulation"
+                formControlName="viewEncapsulation"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="">Default (Emulated)</option>
+                <option value="Emulated">Emulated</option>
+                <option value="None">None</option>
+                <option value="ShadowDom">ShadowDom</option>
+              </select>
+            </div>
+
             <!-- Package Manager -->
             <div>
               <label for="packageManager" class="block text-sm font-medium text-gray-700 mb-2">
@@ -174,24 +192,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="app"
               />
-            </div>
-
-            <!-- View Encapsulation -->
-            <div>
-              <label for="viewEncapsulation" class="block text-sm font-medium text-gray-700 mb-2">
-                <i class="fas fa-eye mr-1"></i>
-                View Encapsulation
-              </label>
-              <select
-                id="viewEncapsulation"
-                formControlName="viewEncapsulation"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">Default (Emulated)</option>
-                <option value="Emulated">Emulated</option>
-                <option value="None">None</option>
-                <option value="ShadowDom">ShadowDom</option>
-              </select>
             </div>
 
             <!-- New Project Root -->
