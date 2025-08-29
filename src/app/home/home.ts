@@ -114,7 +114,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
                 formControlName="aiConfig"
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
-                <option value="">None</option>
+                <option value="none">None</option>
                 <option value="claude">Claude</option>
                 <option value="copilot">GitHub Copilot</option>
                 <option value="cursor">Cursor</option>
@@ -534,7 +534,7 @@ export class Home {
     if (formValue.packageManager && formValue.packageManager !== '') {
       cmd += ` --package-manager=${formValue.packageManager}`;
     }
-    if (formValue.aiConfig) {
+    if (formValue.aiConfig !== '' && formValue.aiConfig !== 'none') {
       cmd += ` --ai-config=${formValue.aiConfig}`;
     }
     if (formValue.collection) {
