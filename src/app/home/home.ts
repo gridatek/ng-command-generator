@@ -308,8 +308,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
             <div class=" pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-file-code mr-1"></i>
-                Prompts
+                <i class="fas fa-terminal mr-1"></i>
+                CLI Interaction
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
