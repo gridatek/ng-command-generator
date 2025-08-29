@@ -423,11 +423,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
           </div>
 
           <div class="mb-6 slide-enter">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="text-lg font-medium text-gray-700 flex items-center">
-                <i class="fab fa-linux mr-2 text-blue-600"></i>
-                Linux / macOS
-              </h3>
+            <div class="flex items-center justify-end mb-2">
               <button
                 onclick="copyCommand('linuxCommand')"
                 class="flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-md hover:bg-blue-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
