@@ -485,7 +485,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             <div class="mt-6 pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
                 <i class="fas fa-git-alt mr-1"></i>
-                Git Configuration
+                Git Setup
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -524,8 +524,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
             <div class="pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-sliders-h mr-1"></i>
-                How to create files?
+                <i class="fas fa-play-circle mr-1"></i>
+                Execution Options
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
