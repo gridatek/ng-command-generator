@@ -384,27 +384,13 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </div>
             </div>
 
-            <!-- Advanced Options -->
+            <!-- Single File Component Options -->
             <div class="border-t pt-4">
               <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                <i class="fas fa-sliders-h mr-1"></i>
-                Advanced Options
+                <i class="fas fa-file-code mr-1"></i>
+                Single File Component
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="inlineStyle"
-                    formControlName="inlineStyle"
-                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                  />
-                  <label for="inlineStyle" class="ml-2 block text-sm text-gray-700 tooltip">
-                    <i class="fas fa-code mr-1"></i>
-                    Inline Style
-                    <span class="tooltiptext">Include styles in component files</span>
-                  </label>
-                </div>
-
                 <div class="flex items-center">
                   <input
                     type="checkbox"
@@ -419,6 +405,29 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                   </label>
                 </div>
 
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="inlineStyle"
+                    formControlName="inlineStyle"
+                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label for="inlineStyle" class="ml-2 block text-sm text-gray-700 tooltip">
+                    <i class="fas fa-code mr-1"></i>
+                    Inline Style
+                    <span class="tooltiptext">Include styles in component files</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advanced Options -->
+            <div class="border-t pt-4">
+              <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                <i class="fas fa-sliders-h mr-1"></i>
+                Advanced Options
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex items-center">
                   <input
                     type="checkbox"
