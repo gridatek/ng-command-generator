@@ -808,8 +808,10 @@ export class Home implements OnInit, OnDestroy {
     if (!formValue.createApplication) cmd += ' --no-create-application';
     if (!formValue.interactive) cmd += ' --no-interactive';
 
-    if (formValue.ssr) cmd += ' --ssr';
-    if (formValue.zoneless) cmd += ' --zoneless';
+    cmd += formValue.ssr ? ' --ssr' : ' --no-ssr';
+
+    cmd += formValue.zoneless ? ' --zoneless' : ' --no-zoneless';
+
     if (formValue.skipGit) cmd += ' --skip-git';
     if (formValue.skipInstall) cmd += ' --skip-install';
     if (formValue.skipTests) cmd += ' --skip-tests';
