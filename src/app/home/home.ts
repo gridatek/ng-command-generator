@@ -736,7 +736,7 @@ export class Home implements OnInit, OnDestroy {
         const formData = JSON.parse(stored);
         // Merge with defaults to handle new fields that might have been added
         const mergedData = { ...this.defaultValues, ...formData };
-        this.commandForm.patchValue(mergedData, { emitEvent: false });
+        this.commandForm.patchValue(mergedData, { emitEvent: true });
       }
     } catch (error) {
       console.warn('Failed to load form data from localStorage:', error);
