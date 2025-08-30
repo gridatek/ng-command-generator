@@ -23,7 +23,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
         <div class="text-center mb-8">
           <div class="flex items-center justify-center mb-4">
             <i class="fab fa-angular text-red-600 text-4xl mr-3"></i>
-            <h1 class="text-4xl font-bold text-gray-800">Angular Command Generator</h1>
+            <h1 class="text-4xl font-bold text-gray-800">Ng Command Generator</h1>
           </div>
           <p class="text-gray-600 text-lg">
             Generate optimized <code class="bg-gray-200 px-2 py-1 rounded">ng new</code> commands

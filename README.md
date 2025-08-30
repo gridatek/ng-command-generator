@@ -1,4 +1,4 @@
-# Angular Command Generator
+# Ng Command Generator
 
 A modern, interactive web application that helps developers generate optimized `ng new` commands for creating Angular projects with custom configurations.
 
