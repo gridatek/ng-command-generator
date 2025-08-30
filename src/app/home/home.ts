@@ -778,7 +778,7 @@ export class Home implements OnInit, OnDestroy {
     }
 
     // Other options
-    if (formValue.style && formValue.style !== 'css') {
+    if (formValue.style) {
       cmd += ` --style=${formValue.style}`;
     }
     if (formValue.packageManager && formValue.packageManager !== '') {
