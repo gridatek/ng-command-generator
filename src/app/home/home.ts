@@ -212,7 +212,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                       formControlName="packageManager"
                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
-                      <option value="">Default (npm)</option>
+                      <option value="">Not specified</option>
                       <option value="npm">npm</option>
                       <option value="yarn">yarn</option>
                       <option value="pnpm">pnpm</option>
@@ -777,16 +777,14 @@ export class Home implements OnInit, OnDestroy {
       cmd += ` --directory="${formValue.directory}"`;
     }
 
-    // Other options
-    if (formValue.style) {
-      cmd += ` --style=${formValue.style}`;
-    }
-    if (formValue.packageManager && formValue.packageManager !== '') {
+    cmd += ` --style=${formValue.style}`;
+
+    if (formValue.packageManager) {
       cmd += ` --package-manager=${formValue.packageManager}`;
     }
-    if (formValue.aiConfig !== '' && formValue.aiConfig !== 'none') {
-      cmd += ` --ai-config=${formValue.aiConfig}`;
-    }
+
+    cmd += ` --ai-config=${formValue.aiConfig}`;
+
     if (formValue.collection) {
       cmd += ` --collection=${formValue.collection}`;
     }
