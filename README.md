@@ -1,59 +1,44 @@
-# NgCommandGenerator
+# Angular Command Generator
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+A modern, interactive web application that helps developers generate optimized `ng new` commands for creating Angular projects with custom configurations.
 
-## Development server
 
-To start a local development server, run:
+## ✨ Features
 
-```bash
-ng serve
-```
+### 🎯 **Comprehensive Configuration Options**
+- **Basic Setup**: App name, directory, component prefix
+- **Styling**: CSS, SCSS, Sass, Less support with view encapsulation options
+- **Package Management**: Support for npm, yarn, pnpm, bun, and cnpm
+- **AI Tools Integration**: Claude, GitHub Copilot, Cursor, Gemini, JetBrains, Windsurf
+- **Modern Features**: Standalone components, SSR, Zoneless change detection
+- **Testing Options**: Configure test generation preferences
+- **Git Integration**: Initial commit and repository setup options
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 💾 **Smart Persistence**
+- Automatically saves your configuration to localStorage
+- Restores your settings when you return
+- Clear storage and reset to defaults options
 
-## Code scaffolding
+### 🚀 **Developer Experience**
+- **Real-time Command Generation**: See your command update as you configure
+- **One-click Copy**: Copy the generated command to clipboard
+- **Responsive Design**: Works perfectly on desktop and mobile
+- **Intuitive Interface**: Clean, organized sections with helpful descriptions
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 🔧 **Advanced Options**
+- Single file component configuration (inline templates/styles)
+- CLI interaction settings (interactive prompts, defaults)
+- Execution options (dry run, force overwrite)
+- Schematics collection support
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
 
-## Building
 
-To build the project run:
+## 📄 License
 
-```bash
-ng build
-```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Made with ❤️ by the Angular community**
