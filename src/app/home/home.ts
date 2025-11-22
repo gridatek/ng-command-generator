@@ -187,6 +187,31 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                       </p>
                     </div>
                   </div>
+
+                  <!-- Row 3: File Name Style Guide (NEW in Angular v21) -->
+                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+                    <!-- File Name Style Guide -->
+                    <div>
+                      <label
+                        for="fileNameStyleGuide"
+                        class="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        <i class="fas fa-file-signature mr-1"></i>
+                        File Name Style Guide <span class="text-xs text-blue-600">(NEW in v21)</span>
+                      </label>
+                      <select
+                        id="fileNameStyleGuide"
+                        formControlName="fileNameStyleGuide"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      >
+                        <option value="2025">2025 Style Guide (Concise: app.ts)</option>
+                        <option value="2016">2016 Style Guide (Verbose: app.component.ts)</option>
+                      </select>
+                      <p class="mt-1 text-xs text-gray-500">
+                        File naming convention for generated files
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -683,11 +708,12 @@ export class Home implements OnInit, OnDestroy {
     prefix: 'app',
     viewEncapsulation: '',
     newProjectRoot: 'projects',
+    fileNameStyleGuide: '2025',
     routing: true,
     standalone: true,
     strict: true,
     ssr: false,
-    zoneless: false,
+    zoneless: true,
     commit: true,
     createApplication: true,
     interactive: true,
@@ -796,6 +822,11 @@ export class Home implements OnInit, OnDestroy {
     }
     if (formValue.newProjectRoot && formValue.newProjectRoot !== 'projects') {
       cmd += ` --new-project-root=${formValue.newProjectRoot}`;
+    }
+
+    // File Name Style Guide (Angular v21+)
+    if (formValue.fileNameStyleGuide && formValue.fileNameStyleGuide !== '2025') {
+      cmd += ` --file-name-style-guide=${formValue.fileNameStyleGuide}`;
     }
 
     // Boolean flags
