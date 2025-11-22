@@ -621,6 +621,23 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
+                    <label for="cliVersion" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-terminal mr-1"></i>
+                      CLI Version
+                    </label>
+                    <select
+                      id="cliVersion"
+                      formControlName="cliVersion"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      <option value="ng">Local (ng)</option>
+                      <option value="latest">npx @angular/cli@latest</option>
+                      <option value="next">npx @angular/cli@next</option>
+                    </select>
+                    <p class="mt-1 text-xs text-gray-500">Angular CLI version to use</p>
+                  </div>
+
+                  <div>
                     <div class="flex items-center">
                       <input
                         type="checkbox"
@@ -725,6 +742,7 @@ export class Home implements OnInit, OnDestroy {
     inlineStyle: false,
     inlineTemplate: false,
     defaults: false,
+    cliVersion: 'latest',
     dryRun: false,
     force: false,
   };
@@ -795,6 +813,11 @@ export class Home implements OnInit, OnDestroy {
     const formValue = this.formValueSignal();
 
     let cmd = 'ng new';
+    if (formValue.cliVersion === 'latest') {
+      cmd = 'npx @angular/cli@latest new';
+    } else if (formValue.cliVersion === 'next') {
+      cmd = 'npx @angular/cli@next new';
+    }
 
     // Application Name and Directory
     if (formValue.appName) {
