@@ -514,7 +514,23 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <div class="flex items-center">
+                    <label for="testRunner" class="block text-sm font-medium text-gray-700 mb-2">
+                      <i class="fas fa-vial mr-1"></i>
+                      Test Runner <span class="text-xs text-blue-600">(NEW in v21)</span>
+                    </label>
+                    <select
+                      id="testRunner"
+                      formControlName="testRunner"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      <option value="vitest">Vitest (Default)</option>
+                      <option value="karma">Karma</option>
+                    </select>
+                    <p class="mt-1 text-xs text-gray-500">Unit testing framework to use</p>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center h-10">
                       <input
                         type="checkbox"
                         id="skipTests"
@@ -522,7 +538,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                         class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                       />
                       <label for="skipTests" class="ml-2 block text-sm text-gray-700">
-                        <i class="fas fa-vial mr-1"></i>
+                        <i class="fas fa-ban mr-1"></i>
                         Skip Tests
                       </label>
                     </div>
@@ -738,6 +754,7 @@ export class Home implements OnInit, OnDestroy {
     skipGit: false,
     skipInstall: false,
     skipTests: false,
+    testRunner: 'vitest',
     minimal: false,
     inlineStyle: false,
     inlineTemplate: false,
@@ -868,6 +885,12 @@ export class Home implements OnInit, OnDestroy {
     if (formValue.skipGit) cmd += ' --skip-git';
     if (formValue.skipInstall) cmd += ' --skip-install';
     if (formValue.skipTests) cmd += ' --skip-tests';
+
+    // Test Runner (Angular v21+, default is vitest)
+    if (formValue.testRunner && formValue.testRunner !== 'vitest') {
+      cmd += ` --test-runner=${formValue.testRunner}`;
+    }
+
     if (formValue.minimal) cmd += ' --minimal';
     if (formValue.inlineStyle) cmd += ' --inline-style';
     if (formValue.inlineTemplate) cmd += ' --inline-template';
