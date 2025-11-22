@@ -159,6 +159,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
                         <option value="scss">SCSS</option>
                         <option value="sass">Sass</option>
                         <option value="less">Less</option>
+                        <option value="tailwind">Tailwind CSS (NEW in v21)</option>
                       </select>
                       <p class="mt-1 text-xs text-gray-500">Stylesheet format for components</p>
                     </div>
